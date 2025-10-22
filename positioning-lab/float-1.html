@@ -66,3 +66,67 @@
 </body>
 
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Float Layout 1</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      color: navy;
+      text-align: center;
+    }
+    .container {
+      background-color: #e0f7fa;
+      border: 2px solid teal;
+      border-radius: 10px;
+      padding: 15px;
+      overflow: hidden;
+    }
+    .float-box {
+      width: 45%;
+      height: 100px;
+      color: white;
+      text-align: center;
+      line-height: 100px;
+      float: left;
+      margin-right: 5%;
+      border-radius: 10px;
+    }
+    .float-box.left {
+      background-color: navy;
+    }
+    .float-box.right {
+      background-color: teal;
+      float: right;
+      margin-right: 0;
+    }
+    footer {
+      background-color: blue;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Float Layout 1</h2>
+  <div class="container">
+    <div class="float-box left">Left Box</div>
+    <div class="float-box right">Right Box</div>
+  </div>
+  <footer>Created by Student | Float Layout Example 1</footer>
+</body>
+</html>
+
+  

@@ -66,3 +66,76 @@
 </body>
 
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Absolute Layout 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      color: navy;
+      text-align: center;
+    }
+    .container {
+      position: relative;
+      height: 250px;
+      background-color: #e0f7fa;
+      border: 2px solid teal;
+      border-radius: 10px;
+    }
+    .layer {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      color: white;
+      text-align: center;
+      line-height: 120px;
+      opacity: 0.9;
+      border-radius: 10px;
+    }
+    .one {
+      background-color: blue;
+      top: 30px;
+      left: 40px;
+      z-index: 1;
+    }
+    .two {
+      background-color: teal;
+      top: 70px;
+      left: 80px;
+      z-index: 2;
+    }
+    .three {
+      background-color: navy;
+      top: 110px;
+      left: 120px;
+      z-index: 3;
+    }
+    footer {
+      background-color: navy;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Absolute Layout 2 (Layered)</h2>
+  <div class="container">
+    <div class="layer one">Layer 1</div>
+    <div class="layer two">Layer 2</div>
+    <div class="layer three">Layer 3</div>
+  </div>
+  <footer>Created by Student | Absolute Layout Example 2</footer>
+</body>
+</html>
