@@ -1,65 +1,72 @@
-
- 
-
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Absolute Layout 1</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f8ff;
-      margin: 0;
-      padding: 20px;
-    }
-    h2 {
-      color: navy;
-      text-align: center;
-    }
-    .container {
-      position: relative;
-      height: 250px;
-      background-color: #e0f7fa;
-      border: 2px solid teal;
-      border-radius: 10px;
-    }
-    .absolute-box {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      color: white;
-      text-align: center;
-      line-height: 120px;
-      border-radius: 10px;
-    }
-    .one {
-      background-color: navy;
-      top: 40px;
-      left: 40px;
-    }
-    .two {
-      background-color: teal;
-      top: 80px;
-      left: 180px;
-    }
-    footer {
-      background-color: teal;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      margin-top: 30px;
-      border-radius: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex 1: Float Grid</title>
+    <style type="text/css">
+        /* Basic styles - without box-sizing */
+        body {
+            background-color: #ECECEC;
+            font-weight: bold;
+            font-family: Tahoma, Geneva, sans-serif;
+            color: #FFF;
+            text-align: center;
+            line-height: 24px;
+        }
+        h1 {
+            color: #000;
+            font-weight: normal;
+            padding: 20px;
+        }
+        #wrapper {
+            background-color: #FFF;
+            border: 1px solid #c0c0c0;
+            /* Student's fixed guess at wrapper width */
+            width: 820px; 
+            margin: 20px auto;
+            text-shadow: 2px 2px #000;
+            /* Simple float clearing */
+            overflow: hidden; 
+            min-height: 350px; 
+            padding: 10px;
+        }
+        .box {
+            /* REQUIRED: Float the boxes */
+            float: left;
+            /* Guessing the pixel width */
+            width: 380px; 
+            height: 150px;
+            /* Messy margins often cause layout trouble */
+            margin: 10px;
+            line-height: 130px; 
+            text-shadow: 1px 1px #000;
+        }
+        #navy { background-color: #001f3f; }
+        #teal { background-color: #39CCCC; }
+        #blue { background-color: #0074D9; }
+        #aqua { background-color: #7FDBFF; }
+        
+        #footer { 
+            background-color: #666; 
+            clear: both; 
+            padding: 15px;
+            /* Trying to align footer width with fixed pixels */
+            width: 800px; 
+            margin: 10px auto; 
+            line-height: normal; 
+        }
+    </style>
 </head>
 <body>
-  <h2>Absolute Layout 1</h2>
-  <div class="container">
-    <div class="absolute-box one">A1</div>
-    <div class="absolute-box two">A2</div>
-  </div>
-  <footer>AbsoluteLayout1 </footer>
+    <h1>Exercise 1: 2x2 Grid (Float Required)</h1>
+    <section id="wrapper">
+        <div id="navy" class="box">Navy</div>
+        <div id="teal" class="box">Teal</div>
+        <div id="blue" class="box">Blue</div>
+        <div id="aqua" class="box">Aqua</div>
+        <div id="footer">Footer</div>
+    </section>
 </body>
 </html>
