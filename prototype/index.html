@@ -1,123 +1,251 @@
-<h1> Prototype HTML5 Assignment Submission </h1>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>VA.gov </title>
-  <!-- This is the title of the page -->
-  <meta charset="UTF-8" />
-  <!-- Sets the character encoding -->
-  <meta name="description" content="Example page for VA.gov" />
-  <!-- Description of the page -->
-  <meta name="author" content="James Culwell"/>
-  < -- James Culwell -- >
+    <title>VA.gov </title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Example page for VA.gov" />
+    <meta name="author" content="James Culwell"/>
+    <style>
+        /* VA Color Palette */
+        :root {
+            --va-blue-primary: #005ea2; /* A strong, accessible blue */
+            --va-navy: #1a4480;       /* Dark blue for headers and footer */
+            --va-light-gray: #f0f0f0;  /* Light background for body */
+            --va-text-color: #333;     /* Dark text for readability */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--va-light-gray);
+            color: var(--va-text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* STYLING FOR THE ASSIGNMENT HEADER */
+        .submission-header {
+            background-color: #fce38a; /* A noticeable yellow banner color */
+            color: #333;
+            text-align: center;
+            padding: 10px 0;
+            margin-bottom: 0; /* Ensures it sits right above the nav */
+            font-size: 1.2em;
+            border-bottom: 2px solid #f39c12;
+        }
+
+        /* MAIN CONTENT CONTAINER */
+        main {
+            padding: 20px;
+            background-color: white; /* Content area is white */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 0 auto; /* Center the main content */
+        }
+
+        /* HEADER STYLES */
+        header {
+            background-color: var(--va-navy);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            border-radius: 5px 5px 0 0;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            flex-grow: 1;
+        }
+        
+        header img {
+            margin-right: 15px;
+        }
+
+        /* NAVIGATION TABS STYLES */
+        nav {
+            background-color: var(--va-blue-primary);
+            padding: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* Makes the list items horizontal */
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        nav li {
+            background-color: var(--va-blue-primary);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        nav li:hover {
+            background-color: #004780; /* Darker on hover */
+        }
+
+        nav a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        /* CONTENT STYLES */
+        #content {
+            padding-top: 20px;
+        }
+
+        /* TABLE STYLES (Modernized) */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        caption {
+            font-weight: bold;
+            padding: 8px;
+            text-align: left;
+            background-color: #eee;
+            border-bottom: none;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        thead tr {
+            background-color: #e6f0ff; /* Light blue header */
+            color: var(--va-navy);
+        }
+
+        /* FOOTER STYLES */
+        footer {
+            background-color: var(--va-navy);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 0 0 5px 5px;
+        }
+
+        footer a {
+            color: #b3d1ff; /* Light blue link in footer */
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-  <main>
-    <header>
-      <h1>Welcome to VA.gov Page</h1>
-    </header>
-    <section id="content">
-      <h2>Example Headings</h2>
-      <h3>Heading Level 3</h3>
-      <h4>Heading Level 4</h4>
-      <h5>Heading Level 5</h5>
-      
-      <p>This is a paragraph with some <strong>important information</strong> and some <em>additional details</em>.</p>
-      
-      <h3>Lists</h3>
-      <h4>Ordered List</h4>
-      <ol>
-        <li>Apply for disability benefits</li>
-        <li>Schedule a healthcare appointment</li>
-        <li>Access education resources</li>
-      </ol>
-      
-      <h4>Unordered List</h4>
-      <ul>
-        <li>Veterans Health Care</li>
-        <li>Home Loan Guaranty</li>
-        <li>Pension Programs</li>
-      </ul>
-      
-      <h4>Definition List</h4>
-      <dl>
-        <dt>Disability Compensation</dt>
-        <dd>Payments for veterans with service-connected disabilities.</dd>
-        <dt>GI Bill</dt>
-        <dd>Education benefits for veterans and their families.</dd>
-      </dl>
-      
-      <h3>Quotes</h3>
-      <p>This is an inline quote: <q cite="https://www.va.gov">"VA.gov is your resource for veteran benefits."</q></p>
-      <blockquote cite="https://www.va.gov">
-        "Our mission is to serve and honor the men and women who are America’s veterans."
-      </blockquote>
-      
-      <h3>Table</h3>
-      <table border="1" cellpadding="4" cellspacing="0" summary="VA benefits table">
-        <caption>VA Benefits Overview</caption>
-        <thead>
-          <tr>
-            <th scope="col">Benefit</th>
-            <th scope="col">Eligibility</th>
-            <th scope="col">How to Apply</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Disability Compensation</td>
-            <td>Veterans with service-related injuries</td>
-            <td>Online, Phone, Mail</td>
-            <td>1-800-827-1000</td>
-            <td>Active</td>
-          </tr>
-          <tr>
-            <td>Education Benefits (GI Bill)</td>
-            <td>Veterans and dependents</td>
-            <td>Online Application</td>
-            <td>1-888-442-4551</td>
-            <td>Active</td>
-          </tr>
-          <tr>
-            <td>Healthcare Services</td>
-            <td>Eligible Veterans</td>
-            <td>Online, In-person</td>
-            <td>1-877-222-8387</td>
-            <td>Active</td>
-          </tr>
-          <tr>
-            <td>Home Loan Guaranty</td>
-            <td>Veterans and active duty</td>
-            <td>Through lenders</td>
-            <td>1-877-827-3702</td>
-            <td>Active</td>
-          </tr>
-          <tr>
-            <td>Pension Programs</td>
-            <td>Low income Veterans</td>
-            <td>Online, Mail</td>
-            <td>1-800-827-1000</td>
-            <td>Active</td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <h3>Image</h3>
-      <img src="https://department.va.gov/wp-content/uploads/2022/05/va-og-twitter-image.png" alt="VA.gov logo" width="200" height="100" />
-    </section> <!-- closing section content -->
+    <a id="top"></a> <h1 class="submission-header">Prototype HTML5 Assignment Submission</h1>
     
     <nav>
-      <ul>
-        <li><a href="index.html" title="VA.gov">Home</a></li>
-        <li><a href="jcculwell@ualr.edu" title="Send email">Contact</a></li>
-      </ul>
-    </nav> <!-- closing nav -->
-    
-    <footer>
-      <h6> 2025 James Culwell- <a href="mailto:jcculwell@ualr.edu">Email Me</a> - <a href="#top">Back to Top</a></h6>
+        <ul>
+            <li><a href="index.html" title="VA.gov">Home</a></li>
+            <li><a href="#" title="Healthcare">Health Care</a></li>
+            <li><a href="#" title="Disability">Disability</a></li>
+            <li><a href="#" title="Education">Education</a></li>
+            <li><a href="mailto:jcculwell@ualr.edu" title="Send email">Contact</a></li>
+        </ul>
+    </nav> <main>
+        <header>
+            <img src="https://department.va.gov/wp-content/uploads/2022/05/va-og-twitter-image.png" alt="VA.gov logo" width="200" height="100" />
+            <h1>Welcome to VA.gov Page</h1>
+        </header>
+        
+        <section id="content">
+            <h2>Core Content</h2>
+            <p>This is a paragraph with some <strong>important information</strong> and some <em>additional details</em>.</p>
+            
+            <h3>Lists</h3>
+            <h4>Ordered List</h4>
+            <ol>
+                <li>Apply for disability benefits</li>
+                <li>Schedule a healthcare appointment</li>
+                <li>Access education resources</li>
+            </ol>
+            
+            <h4>Unordered List</h4>
+            <ul>
+                <li>Veterans Health Care</li>
+                <li>Home Loan Guaranty</li>
+                <li>Pension Programs</li>
+            </ul>
+            
+            <h4>Definition List</h4>
+            <dl>
+                <dt>Disability Compensation</dt>
+                <dd>Payments for veterans with service-connected disabilities.</dd>
+                <dt>GI Bill</dt>
+                <dd>Education benefits for veterans and their families.</dd>
+            </dl>
+            
+            <h3>Quotes</h3>
+            <p>This is an inline quote: <q cite="https://www.va.gov">"VA.gov is your resource for veteran benefits."</q></p>
+            <blockquote cite="https://www.va.gov">
+                "Our mission is to serve and honor the men and women who are America’s veterans."
+            </blockquote>
+            
+            <h3>Table</h3>
+            <table>
+                <caption>VA Benefits Overview</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Benefit</th>
+                        <th scope="col">Eligibility</th>
+                        <th scope="col">How to Apply</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Disability Compensation</td>
+                        <td>Veterans with service-related injuries</td>
+                        <td>Online, Phone, Mail</td>
+                        <td>1-800-827-1000</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr>
+                        <td>Education Benefits (GI Bill)</td>
+                        <td>Veterans and dependents</td>
+                        <td>Online Application</td>
+                        <td>1-888-442-4551</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr>
+                        <td>Healthcare Services</td>
+                        <td>Eligible Veterans</td>
+                        <td>Online, In-person</td>
+                        <td>1-877-222-8387</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr>
+                        <td>Home Loan Guaranty</td>
+                        <td>Veterans and active duty</td>
+                        <td>Through lenders</td>
+                        <td>1-877-827-3702</td>
+                        <td>Active</td>
+                    </tr>
+                    <tr>
+                        <td>Pension Programs</td>
+                        <td>Low income Veterans</td>
+                        <td>Online, Mail</td>
+                        <td>1-800-827-1000</td>
+                        <td>Active</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section> </main> <footer>
+        <p>
+            &copy; 2025 James Culwell - <a href="mailto:jcculwell@ualr.edu">Email Me</a> - <a href="#top">Back to Top</a>
+        </p>
     </footer>
-  </main> <!-- closing main -->
 </body>
 </html>
