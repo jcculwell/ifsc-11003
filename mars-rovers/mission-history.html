@@ -1,97 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Timeline and mission details for NASA Mars rovers Curiosity and Perseverance.">
-  <meta name="robots" content="noindex">
-  <title>Mars Rover Mission History</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mars Rover Mission History – Timeline of Exploration" />
+  <meta name="robots" content="noindex" />
+  <title>NASA Mars Rovers | Mission History</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to main content</a>
 
-  <header class="site-header" role="banner">
-    <div class="brand">
-      <img src="images/nasa-logo.png" alt="NASA logo" width="50" height="50">
-      <div>
-        <h1>NASA Mars Rovers</h1>
-        <p class="tagline">Robotic Explorers on the Red Planet</p>
+<body>
+  <header>
+    <h1>Mission History</h1>
+    <nav role="navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="mission-history.html" class="active">Mission History</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main role="main">
+    <h2>Mars Rover Mission Timeline</h2>
+
+    <div class="timeline">
+      <div class="event">
+        <h3>Curiosity Rover – 2011–Present</h3>
+        <p>Launched: November 26, 2011 | Landed: August 6, 2012</p>
+        <p>Major Achievements: Discovered evidence of ancient freshwater streams and organic molecules on Mars.</p>
+      </div>
+
+      <div class="event">
+        <h3>Perseverance Rover – 2020–Present</h3>
+        <p>Launched: July 30, 2020 | Landed: February 18, 2021</p>
+        <p>Major Achievements: Collected rock cores, deployed Ingenuity helicopter, and explored Jezero Crater.</p>
       </div>
     </div>
 
-    <nav class="main-nav" role="navigation" aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="mission-history.html">Mission History</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="https://mars.nasa.gov" target="_blank">NASA Mars Site</a></li>
-      </ul>
-    </nav>
-
-    <button id="dark-toggle-2" aria-pressed="false" title="Toggle dark mode">🌙</button>
-  </header>
-
-  <main id="main" role="main">
-    <section class="hero">
-      <h2>Mission Timeline</h2>
-      <p>Here’s a quick look at when NASA’s rovers launched and landed on Mars.</p>
-    </section>
-
-    <section class="timeline">
-      <article class="timeline-item">
-        <time datetime="2011-11-26">Nov 26, 2011</time>
-        <p>Curiosity launched from Cape Canaveral, Florida.</p>
-      </article>
-      <article class="timeline-item">
-        <time datetime="2012-08-06">Aug 6, 2012</time>
-        <p>Curiosity successfully landed on Mars inside Gale Crater.</p>
-      </article>
-      <article class="timeline-item">
-        <time datetime="2020-07-30">Jul 30, 2020</time>
-        <p>Perseverance launched on an Atlas V rocket.</p>
-      </article>
-      <article class="timeline-item">
-        <time datetime="2021-02-18">Feb 18, 2021</time>
-        <p>Perseverance landed in Jezero Crater and began its science mission.</p>
-      </article>
-    </section>
-
-    <section class="rover-comparison">
-      <h3>Rover Comparison Table</h3>
-      <table>
-        <caption>NASA Mars Rover Specs</caption>
-        <thead>
-          <tr>
-            <th>Rover</th>
-            <th>Launch Year</th>
-            <th>Landing Site</th>
-            <th>Main Goal</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Curiosity</td>
-            <td>2011</td>
-            <td>Gale Crater</td>
-            <td>Find if Mars could have supported life.</td>
-          </tr>
-          <tr>
-            <td>Perseverance</td>
-            <td>2020</td>
-            <td>Jezero Crater</td>
-            <td>Collect rock samples and search for ancient life.</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    <img src="https://mars.nasa.gov/system/news_items/main_images/8678_PIA25571-web.jpg" alt="Curiosity rover on Mars" />
   </main>
 
-  <footer class="site-footer" role="contentinfo">
-    <p>This website was created as a student project for educational purposes. NASA is not affiliated with or endorsing this work.</p>
-    <p>Contact: <a href="mailto:student@example.com">student@example.com</a></p>
+  <footer role="contentinfo">
+    <p>
+      This website was created as a student project for educational purposes. 
+      NASA is not affiliated with or endorsing this work.
+    </p>
+    <p>
+      Contact: <a href="mailto:jcculwell@ualr.edu">jcculwell@ualr.edu</a>
+    </p>
   </footer>
 
+  <!--  JavaScript link -->
   <script src="js/script.js"></script>
 </body>
 </html>
+
