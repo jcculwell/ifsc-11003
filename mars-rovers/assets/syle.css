@@ -14,7 +14,11 @@
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
-  background-color: #f4f4f4;
+  background-color: rgb(244, 244, 244);
+  background-image: url("/assets/css/img/nasa-logo.png"); /* Your image path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #222;
   padding: 0;
   margin: 0;
@@ -200,3 +204,4 @@ footer a:hover {
     padding: 15px;
   }
 }
+

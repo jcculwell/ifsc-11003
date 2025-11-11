@@ -1,98 +1,522 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="NASA Mars Rovers – Robotic explorers on the Red Planet" />
-  <meta name="keywords" content="NASA, Mars, Rover, Perseverance, Curiosity" />
-  <meta name="robots" content="noindex" />
-  <title>NASA Mars Rovers | Home</title>
-  <link rel="stylesheet" href="css/styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="NASA Mars Rovers – Robotic explorers on the Red Planet" />
+    <meta name="keywords" content="NASA, Mars, Rover, Perseverance, Curiosity" />
+    <meta name="robots" content="noindex" />
+    <title>NASA Mars Rovers | Home</title>
+    
+    <style>
+        /* ==============================
+           NASA Mars Rover Project Styles
+           ============================== */
+
+        /* Reset some defaults */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global Styles (Watermark image removed to fix source error) */
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            
+            /* Watermark image CSS was removed here */
+            
+            color: #222;
+            padding: 0;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* ACCESSIBILITY: Disable focus ring for mouse users (matches JS logic) */
+        body.using-mouse :focus {
+            outline: none;
+        }
+
+        /* Dark Mode (Enhanced Colors) */
+        body.dark-mode {
+            background-color: #0d1a26; /* Deep Midnight Blue */
+            color: #f0f8ff; /* Subtle Off-White */
+            /* Invert filter was removed here */
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #003366, #001f3f);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 4px solid #ffcc00;
+            position: relative; /* Needed for menu-toggle positioning */
+        }
+
+        header h1 {
+            font-size: 2rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        header .tagline {
+            font-style: italic;
+            font-size: 1rem;
+        }
+
+        /* Navigation Bar */
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #004080;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: #ffcc00;
+            color: #001f3f;
+        }
+
+        /* Main Content */
+        main {
+            padding: 25px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        main h2, main h3 {
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        /* Dark Mode Headings (Updated Accent Color) */
+        body.dark-mode main h2,
+        body.dark-mode main h3 {
+            color: #4dc4ff; /* Electric Cyan */
+        }
+
+        main img {
+            width: 100%;
+            max-width: 750px;
+            border-radius: 10px;
+            margin: 15px auto; /* Centered image */
+            display: block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #003366;
+            color: white;
+        }
+
+        /* Dark Mode Tables */
+        body.dark-mode table {
+            background-color: #1f2d3d; /* Darker panel background */
+            color: #f0f8ff;
+        }
+
+        body.dark-mode table th {
+            background-color: #003366;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            border-left: 4px solid #ffcc00; /* Yellow line */
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        .timeline .event {
+            margin-bottom: 30px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .timeline .event::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background: #003366; /* Dark blue dot */
+            border-radius: 50%;
+            border: 3px solid #ffcc00;
+        }
+        
+        /* TIMELINE ANIMATION CSS (Matches JS) */
+        /* Initial state (Hidden) */
+        .timeline .event {
+            opacity: 0;
+            transform: translateY(20px); /* Start 20px lower */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* Final state (Visible/Animated) */
+        .timeline .event.visible {
+            opacity: 1;
+            transform: translateY(0); /* Move to original position */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #001f3f;
+            color: #fff;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            border-top: 3px solid #ffcc00;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button Styling (Used for Dark Mode and Menu Toggle) */
+        button {
+            background-color: #ffcc00;
+            color: #001f3f;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #ffc107;
+            transform: scale(1.05);
+        }
+
+        /* ---------------------------------- */
+        /* Responsive Layout & Mobile Menu CSS */
+        /* ---------------------------------- */
+
+        /* 4. Hide the menu toggle button on desktop */
+        .menu-toggle {
+            display: none; 
+        }
+
+        @media (max-width: 768px) {
+            /* 1. Initially hide the list on small screens */
+            nav ul {
+                flex-direction: column;
+                display: none; /* Hide the list by default */
+                width: 100%;
+                margin-top: 0;
+                padding: 10px 0;
+                background-color: #001f3f; /* Overlay background for menu */
+                position: absolute;
+                top: 90px; /* Adjust based on header size */
+                left: 0;
+                z-index: 1000;
+            }
+
+            /* 2. Show the list when a 'menu-open' class is added (via JavaScript) */
+            nav ul.menu-open {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 5px 15px;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block; /* Make links full width */
+                margin: 5px 0;
+            }
+
+            /* 3. Style and display the toggle button (Hamburger Icon) */
+            .menu-toggle {
+                display: block; /* Show the button on mobile */
+                background: none;
+                border: none;
+                color: #ffcc00;
+                font-size: 2rem;
+                cursor: pointer;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                z-index: 1001; 
+                padding: 0;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            /* Reset button hover for the menu icon */
+            .menu-toggle:hover {
+                transform: none;
+            }
+
+            main {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <h1>NASA Mars Rovers</h1>
-    <p class="tagline">Robotic Explorers on the Red Planet</p>
-    <nav role="navigation">
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="mission-history.html">Mission History</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <h1>NASA Mars Rovers</h1>
+        <p class="tagline">Robotic Explorers on the Red Planet</p>
+        
+        <nav role="navigation">
+            <!-- Menu Toggle Button (Hamburger icon for mobile) -->
+            <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button> 
 
-  <main role="main">
-    <section>
-      <h2>Exploring Mars with Curiosity and Perseverance</h2>
-      <p>
-        NASA’s Mars Rover Program has revolutionized our understanding of the Red Planet. 
-        From the early missions like Spirit and Opportunity to the latest, cutting-edge 
-        Perseverance rover, each robotic explorer has pushed the boundaries of technology 
-        and human curiosity.
-      </p>
-      <img src="https://mars.nasa.gov/system/news_items/main_images/9035_PIA25681-FigureA-web.jpg" alt="Perseverance rover on Mars" />
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="mission-history.html">Mission History</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
 
-      <h3>Curiosity Rover</h3>
-      <p>
-        Launched in 2011 and landing in Gale Crater in August 2012, Curiosity’s mission 
-        was to determine whether Mars ever had the right environmental conditions 
-        to support microbial life.
-      </p>
+    <main role="main">
+        <section>
+            <h2>Exploring Mars with Curiosity and Perseverance</h2>
+            <p>
+                NASA’s Mars Rover Program has revolutionized our understanding of the Red Planet. 
+                From the early missions like Spirit and Opportunity to the latest, cutting-edge 
+                Perseverance rover, each robotic explorer has pushed the boundaries of technology 
+                and human curiosity.
+            </p>
+            <!-- Added onerror fallback for external image URL -->
+            <img 
+                src="https://mars.nasa.gov/system/news_items/main_images/9035_PIA25681-FigureA-web.jpg" 
+                alt="Perseverance rover on Mars"
+                onerror="this.onerror=null; this.src='https://placehold.co/750x420/2b3951/ffcc00?text=Rover+Image+Unavailable'"
+            />
 
-      <h3>Perseverance Rover</h3>
-      <p>
-        Perseverance landed in February 2021 with advanced instruments designed to collect 
-        and store rock samples for future return to Earth. Its companion helicopter, Ingenuity, 
-        made the first powered flight on another planet.
-      </p>
-    </section>
+            <h3>Curiosity Rover</h3>
+            <p>
+                Launched in 2011 and landing in Gale Crater in August 2012, Curiosity’s mission 
+                was to determine whether Mars ever had the right environmental conditions 
+                to support microbial life.
+            </p>
 
-    <section>
-      <h2>Rover Comparison Table</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>Curiosity</th>
-            <th>Perseverance</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Launch Year</td>
-            <td>2011</td>
-            <td>2020</td>
-          </tr>
-          <tr>
-            <td>Landing Site</td>
-            <td>Gale Crater</td>
-            <td>Jezero Crater</td>
-          </tr>
-          <tr>
-            <td>Main Objective</td>
-            <td>Assess habitability and study Martian climate</td>
-            <td>Search for signs of ancient life and collect samples</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+            <h3>Perseverance Rover</h3>
+            <p>
+                Perseverance landed in February 2021 with advanced instruments designed to collect 
+                and store rock samples for future return to Earth. Its companion helicopter, Ingenuity, 
+                made the first powered flight on another planet.
+            </p>
+        </section>
 
-  <footer role="contentinfo">
-    <p>
-      This website was created as a student project for educational purposes. 
-      NASA is not affiliated with or endorsing this work.
-    </p>
-    <p>
-      Contact: <a href="mailto:jcculwell@ualr.edu">jcculwell@ualr.edu</a> |
-      <a href="https://mars.nasa.gov" target="_blank">Visit NASA Mars</a>
-    </p>
-    <button id="darkModeToggle">Toggle Dark Mode</button>
-  </footer>
+        <section>
+            <h2>Rover Comparison Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Curiosity</th>
+                        <th>Perseverance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Launch Year</td>
+                        <td>2011</td>
+                        <td>2020</td>
+                    </tr>
+                    <tr>
+                        <td>Landing Site</td>
+                        <td>Gale Crater</td>
+                        <td>Jezero Crater</td>
+                    </tr>
+                    <tr>
+                        <td>Main Objective</td>
+                        <td>Assess habitability and study Martian climate</td>
+                        <td>Search for signs of ancient life and collect samples</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <!-- Timeline Section (Added to match JavaScript logic) -->
+        <section>
+            <h2>Mission Milestones</h2>
+            <div class="timeline">
+                <div class="event">
+                    <h3>2011: Curiosity Launch</h3>
+                    <p>The Mars Science Laboratory (MSL) mission launches carrying the Curiosity rover.</p>
+                </div>
+                <div class="event">
+                    <h3>2012: Curiosity Landing (Gale Crater)</h3>
+                    <p>Curiosity successfully lands using a complex "Sky Crane" maneuver.</p>
+                </div>
+                <div class="event">
+                    <h3>2020: Perseverance Launch</h3>
+                    <p>The Mars 2020 mission launches, carrying Perseverance and the Ingenuity helicopter.</p>
+                </div>
+                <div class="event">
+                    <h3>2021: Perseverance Landing (Jezero Crater)</h3>
+                    <p>Perseverance lands and begins collecting rock samples for return to Earth.</p>
+                </div>
+                <div class="event">
+                    <h3>2021: Ingenuity's First Flight</h3>
+                    <p>Ingenuity achieves the first powered, controlled flight on another planet.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <!-- JavaScript link -->
-  <script src="js/script.js"></script>
+    <footer role="contentinfo">
+        <p>
+            This website was created as a student project for educational purposes. 
+            NASA is not affiliated with or endorsing this work.
+        </p>
+        <p>
+            Contact: <a href="mailto:jcculwell@ualr.edu">jcculwell@ualr.edu</a> |
+            <a href="https://mars.nasa.gov" target="_blank">Visit NASA Mars</a>
+        </p>
+        <!-- Dark Mode Toggle Button (Used in JS) -->
+        <button id="darkModeToggle">Toggle Dark Mode</button>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const body = document.body;
+            const darkModeToggle = document.getElementById("darkModeToggle");
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navList = document.querySelector('nav ul');
+            
+            // ===================================
+            // 1. Dark Mode Toggle Functionality
+            // ===================================
+            
+            // Function to set the theme state (dark/light)
+            const applyDarkMode = (isDark) => {
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                    if (darkModeToggle) {
+                        darkModeToggle.textContent = 'Toggle Light Mode';
+                    }
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    if (darkModeToggle) {
+                        darkModeToggle.textContent = 'Toggle Dark Mode';
+                    }
+                    localStorage.setItem('theme', 'light');
+                }
+            };
+            
+            // Load saved preference on page load
+            const savedTheme = localStorage.getItem("theme");
+            
+            if (savedTheme === "dark") {
+                applyDarkMode(true);
+            } else if (savedTheme === "light") {
+                applyDarkMode(false);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // Fallback: Check operating system preference
+                applyDarkMode(true);
+            }
+
+            // Event listener for the toggle button
+            if (darkModeToggle) {
+                darkModeToggle.addEventListener("click", () => {
+                    const isCurrentlyDark = body.classList.contains('dark-mode');
+                    applyDarkMode(!isCurrentlyDark);
+                });
+            }
+
+            // ===================================
+            // 2. Responsive Menu Toggle Functionality
+            // ===================================
+
+            if (menuToggle && navList) {
+                menuToggle.addEventListener('click', () => {
+                    navList.classList.toggle('menu-open');
+                    // Toggle hamburger icon to an 'X'
+                    if (navList.classList.contains('menu-open')) {
+                        menuToggle.innerHTML = '&#10005;'; // X mark
+                    } else {
+                        menuToggle.innerHTML = '&#9776;'; // Hamburger icon
+                    }
+                });
+            }
+
+            // ===================================
+            // 3. ACCESSIBILITY FOCUS RING
+            // ===================================
+            let mouseDown = false;
+            document.body.addEventListener("mousedown", () => {
+                mouseDown = true;
+                document.body.classList.add("using-mouse");
+            });
+
+            document.body.addEventListener("keydown", (e) => {
+                if (e.key === "Tab") {
+                    mouseDown = false;
+                    document.body.classList.remove("using-mouse");
+                }
+            });
+
+            // ===================================
+            // 4. SIMPLE TIMELINE ANIMATION
+            // ===================================
+            const events = document.querySelectorAll(".timeline .event");
+            const revealOnScroll = () => {
+                events.forEach(event => {
+                    const rect = event.getBoundingClientRect();
+                    // Reveal when 100px of the element is visible from the bottom of the viewport
+                    if (rect.top < window.innerHeight - 100) {
+                        event.classList.add("visible");
+                    }
+                });
+            };
+
+            window.addEventListener("scroll", revealOnScroll);
+            revealOnScroll(); // run on load to show elements already in view
+        });
+    </script>
 </body>
 </html>

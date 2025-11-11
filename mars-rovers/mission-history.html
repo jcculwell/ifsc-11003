@@ -1,58 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Mars Rover Mission History – Timeline of Exploration" />
-  <meta name="robots" content="noindex" />
-  <title>NASA Mars Rovers | Mission History</title>
-  <link rel="stylesheet" href="css/styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mission history of the NASA Mars Rovers: Spirit, Opportunity, Curiosity, and Perseverance." />
+    <meta name="keywords" content="NASA, Mars, Rover, History, Spirit, Opportunity, Curiosity, Perseverance" />
+    <meta name="robots" content="noindex" />
+    <title>NASA Mars Rovers | Mission History</title>
+    
+    <style>
+        /* --- CORE STYLES --- */
+
+        /* Reset some defaults */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global Body Setup */
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            
+            color: #222;
+            padding: 0;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* ACCESSIBILITY: Disable focus ring for mouse users */
+        body.using-mouse :focus {
+            outline: none;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #0d1a26; 
+            color: #f0f8ff; 
+        }
+
+        /* Header Layout */
+        header {
+            background: linear-gradient(135deg, #003366, #001f3f);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 4px solid #ffcc00; /* Key accent color */
+            position: relative; 
+        }
+
+        header h1 {
+            font-size: 2rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        /* Navigation Styles */
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #004080;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: #ffcc00;
+            color: #001f3f;
+        }
+
+        /* Main Content and Typography */
+        main {
+            padding: 25px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        main h2, main h3 {
+            color: #003366; /* Main NASA blue */
+            margin-bottom: 10px;
+        }
+
+        body.dark-mode main h2,
+        body.dark-mode main h3 {
+            color: #4dc4ff; /* Light blue accent for dark mode */
+        }
+
+        main img {
+            width: 100%;
+            max-width: 750px;
+            border-radius: 10px;
+            margin: 15px auto; 
+            display: block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Design */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #003366;
+            color: white;
+        }
+
+        body.dark-mode table {
+            background-color: #1f2d3d; 
+            color: #f0f8ff;
+        }
+
+        /* Timeline / Mission Milestones */
+        .timeline {
+            border-left: 4px solid #ffcc00; 
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        .timeline .event {
+            margin-bottom: 30px;
+            padding-left: 10px;
+            position: relative;
+        }
+
+        .timeline .event::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background: #003366; 
+            border-radius: 50%;
+            border: 3px solid #ffcc00;
+        }
+        
+        /* Timeline Animation CSS */
+        .timeline .event {
+            opacity: 0;
+            transform: translateY(20px); 
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .timeline .event.visible {
+            opacity: 1;
+            transform: translateY(0); 
+        }
+
+        /* Footer and Buttons */
+        footer {
+            text-align: center;
+            background-color: #001f3f;
+            color: #fff;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            border-top: 3px solid #ffcc00;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: #ffcc00;
+            color: #001f3f;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #ffc107;
+            transform: scale(1.05);
+        }
+
+        /* RESPONSIVENESS AND MOBILE MENU */
+
+        /* 4. Hide the menu toggle button on desktop */
+        .menu-toggle {
+            display: none; 
+        }
+
+        @media (max-width: 768px) {
+            /* 1. Mobile navigation list is hidden by default */
+            nav ul {
+                flex-direction: column;
+                display: none; 
+                width: 100%;
+                margin-top: 0;
+                padding: 10px 0;
+                background-color: #001f3f; 
+                position: absolute;
+                top: 90px; 
+                left: 0;
+                z-index: 1000;
+            }
+
+            /* 2. Menu opens with this class */
+            nav ul.menu-open {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 5px 15px;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block; 
+                margin: 5px 0;
+            }
+
+            /* 3. Show the hamburger icon */
+            .menu-toggle {
+                display: block; 
+                background: none;
+                border: none;
+                color: #ffcc00;
+                font-size: 2rem;
+                cursor: pointer;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                z-index: 1001; 
+                padding: 0;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .menu-toggle:hover {
+                transform: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <h1>Mission History</h1>
-    <nav role="navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="mission-history.html" class="active">Mission History</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <h1>NASA Mars Rovers</h1>
+        <p class="tagline">A Detailed Look at Exploration History</p>
+        
+        <nav role="navigation">
+            <!-- Menu Toggle Button (Hamburger icon for mobile) -->
+            <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button> 
 
-  <main role="main">
-    <h2>Mars Rover Mission Timeline</h2>
+            <ul>
+                <!-- Updated active link for Mission History page -->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mission-history.html" class="active">Mission History</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="timeline">
-      <div class="event">
-        <h3>Curiosity Rover – 2011–Present</h3>
-        <p>Launched: November 26, 2011 | Landed: August 6, 2012</p>
-        <p>Major Achievements: Discovered evidence of ancient freshwater streams and organic molecules on Mars.</p>
-      </div>
+    <main role="main">
+        <section>
+            <h2>The Legacy of Martian Exploration</h2>
+            <p>
+                The journey of NASA’s robotic explorers began long before the current generation. 
+                Each mission, from the original Mars Exploration Rovers (MER) to the cutting-edge 
+                Mars 2020 mission, has built upon the discoveries and lessons learned from its 
+                predecessors, fundamentally changing our perception of Mars from a cold, dead 
+                world to a dynamic planet that once held promise for life.
+            </p>
+        </section>
 
-      <div class="event">
-        <h3>Perseverance Rover – 2020–Present</h3>
-        <p>Launched: July 30, 2020 | Landed: February 18, 2021</p>
-        <p>Major Achievements: Collected rock cores, deployed Ingenuity helicopter, and explored Jezero Crater.</p>
-      </div>
-    </div>
+        <section>
+            <h2>Spirit and Opportunity (MER Program)</h2>
+            <p>
+                Launched in 2003, the twin rovers Spirit and Opportunity were designed for a 
+                90-day mission. They far exceeded expectations, providing evidence of past 
+                liquid water on Mars. Opportunity operated for almost 15 years, covering 
+                over 45 kilometers and proving the exceptional longevity of solar-powered exploration 
+                on the Martian surface. Spirit also operated for over six years before getting stuck 
+                in soft sand. Their work set the stage for the larger, nuclear-powered rovers to follow.
+            </p>
+            <img 
+                src="https://mars.nasa.gov/system/news_items/main_images/8563_PIA23506_Opportunity_Finale.jpg" 
+                alt="Opportunity rover's final panorama"
+                onerror="this.onerror=null; this.src='https://placehold.co/750x420/2b3951/ffcc00?text=Spirit+and+Opportunity+Image'"
+            />
+        </section>
 
-    <img src="https://mars.nasa.gov/system/news_items/main_images/8678_PIA25571-web.jpg" alt="Curiosity rover on Mars" />
-  </main>
+        <section>
+            <h2>Curiosity: The Search for Habitability</h2>
+            <p>
+                The Curiosity rover, part of the Mars Science Laboratory (MSL) mission, marked a 
+                major leap forward in size and sophistication. Landing in 2012, its goal was 
+                to assess the past and present habitability of the planet, particularly within Gale Crater. 
+                Curiosity confirmed that Mars once had flowing water and the necessary chemical 
+                building blocks to support microbial life, fulfilling the primary objective of the mission 
+                and paving the way for the direct search for biosignatures.
+            </p>
+        </section>
+        
+        <!-- Expanded Timeline Section -->
+        <section>
+            <h2>Detailed Mission Timeline</h2>
+            <div class="timeline">
+                <!-- ADDED PRECURSORS HERE -->
+                <div class="event">
+                    <h3>1975: Viking Program Launch</h3>
+                    <p>NASA launches the Viking 1 and 2 missions, which successfully placed two orbiters and two landers on Mars, providing the first color images from the surface and conducting complex biology experiments.</p>
+                </div>
+                <div class="event">
+                    <h3>1997: Sojourner Rover (Pathfinder Mission)</h3>
+                    <p>The Mars Pathfinder mission successfully deploys Sojourner, the first wheeled rover to operate on the surface of Mars, proving the concept of mobile exploration.</p>
+                </div>
+                <!-- END ADDED PRECURSORS -->
+                
+                <div class="event">
+                    <h3>2003: Spirit and Opportunity Launch</h3>
+                    <p>NASA launches the two Mars Exploration Rovers, Spirit and Opportunity.</p>
+                </div>
+                <div class="event">
+                    <h3>2004: MER Landings</h3>
+                    <p>Spirit lands in Gusev Crater (January 3); Opportunity lands in Meridiani Planum (January 24).</p>
+                </div>
+                <div class="event">
+                    <h3>2010: Spirit Mission Ends</h3>
+                    <p>Spirit becomes stuck in soft sand and ceases communications the following year.</p>
+                </div>
+                <div class="event">
+                    <h3>2011: Curiosity Launch</h3>
+                    <p>The Mars Science Laboratory (MSL) mission launches carrying the Curiosity rover.</p>
+                </div>
+                <div class="event">
+                    <h3>2012: Curiosity Landing (Gale Crater)</h3>
+                    <p>Curiosity successfully lands and begins its mission to assess past habitability.</p>
+                </div>
+                <div class="event">
+                    <h3>2018: Opportunity Mission Ends</h3>
+                    <p>After a planet-wide dust storm, NASA declares the Opportunity mission complete.</p>
+                </div>
+                <div class="event">
+                    <h3>2020: Perseverance Launch</h3>
+                    <p>The Mars 2020 mission launches, carrying Perseverance and the Ingenuity helicopter.</p>
+                </div>
+                <div class="event">
+                    <h3>2021: Perseverance Landing (Jezero Crater)</h3>
+                    <p>Perseverance lands and begins collecting rock samples.</p>
+                </div>
+                <div class="event">
+                    <h3>2021: Ingenuity's First Flight</h3>
+                    <p>Ingenuity achieves the first powered, controlled flight on another planet.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-  <footer role="contentinfo">
-    <p>
-      This website was created as a student project for educational purposes. 
-      NASA is not affiliated with or endorsing this work.
-    </p>
-    <p>
-      Contact: <a href="mailto:jcculwell@ualr.edu">jcculwell@ualr.edu</a>
-    </p>
-  </footer>
+    <footer role="contentinfo">
+        <p>
+            This website was created as a student project for educational purposes. 
+            NASA is not affiliated with or endorsing this work.
+        </p>
+        <p>
+            Contact: <a href="mailto:jcculwell@ualr.edu">jcculwell@ualr.edu</a> |
+            <a href="https://mars.nasa.gov" target="_blank">Visit NASA Mars</a>
+        </p>
+        <!-- Dark Mode Toggle Button (Used in JS) -->
+        <button id="darkModeToggle">Toggle Dark Mode</button>
+    </footer>
 
-  <!--  JavaScript link -->
-  <script src="js/script.js"></script>
+    <!-- Link the external JavaScript file (script.js) -->
+    <script src="script.js"></script>
 </body>
 </html>
-

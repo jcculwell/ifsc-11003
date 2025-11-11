@@ -1,64 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="FAQ – Questions about NASA Mars Rovers and Mars exploration" />
-  <meta name="robots" content="noindex" />
-  <title>NASA Mars Rovers | FAQ</title>
-  <link rel="stylesheet" href="css/styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FAQ – Questions about NASA Mars Rovers and Mars exploration" />
+    <meta name="robots" content="noindex" />
+    <title>NASA Mars Rovers | FAQ</title>
+    
+    <style>
+        /* --- CORE STYLES --- */
+
+        /* Reset some defaults */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global Body Setup */
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            
+            color: #222;
+            padding: 0;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* ACCESSIBILITY: */
+        body.using-mouse :focus {
+            outline: none;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #0d1a26; 
+            color: #f0f8ff; 
+        }
+
+        /* Header Layout */
+        header {
+            background: linear-gradient(135deg, #003366, #001f3f);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 4px solid #ffcc00; /* Key accent color */
+            position: relative; 
+        }
+
+        header h1 {
+            font-size: 2rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        /* Navigation Styles */
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #004080;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: #ffcc00;
+            color: #001f3f;
+        }
+
+        /* Main Content  */
+        main {
+            padding: 25px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        main h2, main h3 {
+            color: #003366; /* Main NASA blue */
+            margin-bottom: 10px;
+        }
+
+        body.dark-mode main h2,
+        body.dark-mode main h3 {
+            color: #4dc4ff; /* Light blue accent for dark mode */
+        }
+
+        main img {
+            width: 100%;
+            max-width: 750px;
+            border-radius: 10px;
+            margin: 15px auto; 
+            display: block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Design */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #003366;
+            color: white;
+        }
+
+        body.dark-mode table {
+            background-color: #1f2d3d; 
+            color: #f0f8ff;
+        }
+
+        /* Timeline styles are not needed here but kept for consistency */
+        .timeline {
+            border-left: 4px solid #ffcc00; 
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        .timeline .event {
+            margin-bottom: 30px;
+            padding-left: 10px;
+            position: relative;
+            opacity: 1; /* Override animation since this page has no timeline */
+            transform: translateY(0);
+        }
+        
+        /* --- FAQ-specific styles  --- */
+        .faq-container {
+            margin-top: 20px;
+        }
+
+        details {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode details {
+            background-color: #1f2d3d;
+            border-color: #334455;
+        }
+
+        summary {
+            display: block; 
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #003366;
+            transition: background-color 0.3s;
+        }
+        
+        /* Adds a small arrow indicator using pseudo-element */
+        summary::before {
+            content: '>'; 
+            display: inline-block;
+            margin-right: 10px;
+            transition: transform 0.2s;
+        }
+        
+        details[open] summary::before {
+            content: 'v';
+            transform: rotate(0deg); 
+        }
+
+
+        body.dark-mode summary {
+            color: #ffcc00;
+        }
+
+        details[open] summary {
+            background-color: #e6f0ff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        body.dark-mode details[open] summary {
+            background-color: #2a3d50;
+            border-bottom: 1px solid #334455;
+        }
+
+        details p {
+            padding: 10px 15px 15px;
+            margin: 0;
+        }
+
+        /* Footer and Buttons */
+        footer {
+            text-align: center;
+            background-color: #001f3f;
+            color: #fff;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            border-top: 3px solid #ffcc00;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        /* Button Styling */
+        button {
+            background-color: #ffcc00;
+            color: #001f3f;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #ffc107;
+            transform: scale(1.05);
+        }
+
+        /* RESPONSIVENESS AND MOBILE MENU */
+
+        /* 4. Hide the menu toggle button on desktop */
+        .menu-toggle {
+            display: none; 
+        }
+
+        @media (max-width: 768px) {
+            /* 1. Mobile navigation list is hidden by default */
+            nav ul {
+                flex-direction: column;
+                display: none; 
+                width: 100%;
+                margin-top: 0;
+                padding: 10px 0;
+                background-color: #001f3f; 
+                position: absolute;
+                top: 90px; 
+                left: 0;
+                z-index: 1000;
+            }
+
+            /* 2. Menu opens with this class */
+            nav ul.menu-open {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 5px 15px;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block; 
+                margin: 5px 0;
+            }
+
+            /* 3. Show the hamburger icon */
+            .menu-toggle {
+                display: block; 
+                background: none;
+                border: none;
+                color: #ffcc00;
+                font-size: 2rem;
+                cursor: pointer;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                z-index: 1001; 
+                padding: 0;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .menu-toggle:hover {
+                transform: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <h1>Frequently Asked Questions</h1>
-    <nav role="navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="mission-history.html">Mission History</a></li>
-        <li><a href="faq.html" class="active">FAQ</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <h1>Frequently Asked Questions</h1>
+        <p class="tagline">Answers About the Mars Rover Program</p>
+        
+        <nav role="navigation">
+            <!-- Mobile Menu Toggle Button (Hamburger icon) -->
+            <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button> 
 
-  <main role="main">
-    <section>
-      <h2>Common Questions</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="mission-history.html">Mission History</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
 
-      <h3>Why are rovers sent to Mars?</h3>
-      <p>
-        Rovers allow scientists to explore the Martian surface directly, study rocks, 
-        search for signs of life, and prepare for future human exploration.
-      </p>
+    <main role="main">
+        <section>
+            <h2>Common Questions</h2>
 
-      <h3>How do rovers communicate with Earth?</h3>
-      <p>
-        They use orbiters around Mars as relays to send data back to Earth, 
-        since direct communication would require enormous power.
-      </p>
+            <div class="faq-container">
+                <details>
+                    <summary>Why are rovers sent to Mars?</summary>
+                    <p>
+                        Rovers allow scientists to explore the Martian surface directly, study rocks, 
+                        search for evidence of past microbial life, and gather crucial data to prepare 
+                        for future human exploration. They act as robotic field geologists, collecting 
+                        samples and measurements that orbiters cannot.
+                    </p>
+                </details>
 
-      <h3>How long do missions last?</h3>
-      <p>
-        Most rovers are designed for 90 days to 1 Earth year, but many exceed their 
-        lifespan — Curiosity and Perseverance are still active today.
-      </p>
-    </section>
-  </main>
+                <details>
+                    <summary>How do rovers communicate with Earth?</summary>
+                    <p>
+                        They primarily use the network of NASA orbiters (like the Mars Reconnaissance Orbiter 
+                        or MAVEN) as relays. The rover sends a signal to the closer orbiter, which then 
+                        sends the data back to Earth. This method requires significantly less power than 
+                        sending a direct signal across the vast distance.
+                    </p>
+                </details>
 
-  <footer role="contentinfo">
-    <p>
-      This website was created as a student project for educational purposes. 
-      NASA is not affiliated with or endorsing this work.
-    </p>
-    <p>
-      Contact: <a href="mailto:jcculwell@ualr.edu">jcculwell@ualr.edu</a>
-    </p>
-  </footer>
+                <details>
+                    <summary>How long do missions last?</summary>
+                    <p>
+                        Most rovers are designed for short primary missions (Spirit and Opportunity were 
+                        designed for 90 Martian days, or sols). However, many missions exceed their 
+                        lifespan dramatically, especially the nuclear-powered rovers like Curiosity and 
+                        Perseverance, which are still active and generating science far beyond their 
+                        initial projections.
+                    </p>
+                </details>
+                
+                <details>
+                    <summary>What is the Ingenuity helicopter?</summary>
+                    <p>
+                        Ingenuity was a small, experimental helicopter that accompanied the Perseverance 
+                        rover. It successfully demonstrated the first powered, controlled flight on 
+                        another planet, proving that aerial reconnaissance and exploration is possible 
+                        in the thin Martian atmosphere. It completed dozens of flights before retiring.
+                    </p>
+                </details>
 
-  <!-- JavaScript link -->
-  <script src="js/script.js"></script>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>
+            This website was created as a student project for educational purposes. 
+            NASA is not affiliated with or endorsing this work.
+        </p>
+        <p>
+            Contact: <a href="mailto:jcculwell@ualr.edu">jcculwell@ualr.edu</a> |
+            <a href="https://mars.nasa.gov" target="_blank">Visit NASA Mars</a>
+        </p>
+        <!-- Dark Mode Toggle Button (Used in JS) -->
+        <button id="darkModeToggle">Toggle Dark Mode</button>
+    </footer>
+
+    <!-- Link the external JavaScript file (script.js) -->
+    <script src="script.js"></script>
 </body>
-</html>
-
 
 
