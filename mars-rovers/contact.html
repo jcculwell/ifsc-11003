@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="NASA Mars Rovers – Robotic explorers on the Red Planet" />
-    <meta name="keywords" content="NASA, Mars, Rover, Perseverance, Curiosity" />
+    <meta name="description" content="Contact NASA Mars Rovers Project team." />
+    <meta name="keywords" content="NASA, Mars, Rover, contact, form, feedback" />
     <meta name="robots" content="noindex" />
-    <title>NASA Mars Rovers | Home</title>
+    <title>NASA Mars Rovers | Contact</title>
     
     <style>
         /* ==============================
@@ -20,30 +20,26 @@
             box-sizing: border-box;
         }
 
-        /* Global Styles (Watermark image removed to fix source error) */
+        /* Global Styles */
         body {
             font-family: "Segoe UI", Arial, sans-serif;
             line-height: 1.6;
             background-color: #f4f4f4;
-            
-            /* Watermark image CSS was removed here */
-            
             color: #222;
             padding: 0;
             margin: 0;
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* ACCESSIBILITY: Disable focus ring for mouse users (matches JS logic) */
+        /* ACCESSIBILITY: Disable focus ring for mouse users */
         body.using-mouse :focus {
             outline: none;
         }
 
-        /* Dark Mode (Enhanced Colors) */
+        /* Dark Mode */
         body.dark-mode {
             background-color: #0d1a26; /* Deep Midnight Blue */
             color: #f0f8ff; /* Subtle Off-White */
-            /* Invert filter was removed here */
         }
 
         /* Header */
@@ -53,7 +49,7 @@
             padding: 20px 0;
             text-align: center;
             border-bottom: 4px solid #ffcc00;
-            position: relative; /* Needed for menu-toggle positioning */
+            position: relative;
         }
 
         header h1 {
@@ -98,7 +94,7 @@
         /* Main Content */
         main {
             padding: 25px;
-            max-width: 900px;
+            max-width: 700px; /* Smaller max-width for forms */
             margin: auto;
         }
 
@@ -107,90 +103,61 @@
             margin-bottom: 10px;
         }
 
-        /* Dark Mode Headings (Updated Accent Color) */
+        /* Dark Mode Headings */
         body.dark-mode main h2,
         body.dark-mode main h3 {
             color: #4dc4ff; /* Electric Cyan */
         }
 
-        main img {
-            width: 100%;
-            max-width: 750px;
-            border-radius: 10px;
-            margin: 15px auto; /* Centered image */
-            display: block;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Tables */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+        /* Form Styling */
+        .contact-form-container {
+            padding: 20px;
             background-color: #fff;
             border-radius: 10px;
-            overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        table th, table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        table th {
-            background-color: #003366;
-            color: white;
-        }
-
-        /* Dark Mode Tables */
-        body.dark-mode table {
-            background-color: #1f2d3d; /* Darker panel background */
-            color: #f0f8ff;
-        }
-
-        body.dark-mode table th {
-            background-color: #003366;
-        }
-
-        /* Timeline Section */
-        .timeline {
-            border-left: 4px solid #ffcc00; /* Yellow line */
-            padding-left: 20px;
-            margin: 30px 0;
-        }
-
-        .timeline .event {
-            margin-bottom: 30px;
-            padding-left: 10px;
-            position: relative;
-        }
-
-        .timeline .event::before {
-            content: '';
-            position: absolute;
-            left: -28px;
-            top: 5px;
-            width: 15px;
-            height: 15px;
-            background: #003366; /* Dark blue dot */
-            border-radius: 50%;
-            border: 3px solid #ffcc00;
-        }
         
-        /* TIMELINE ANIMATION CSS (Matches JS) */
-        /* Initial state (Hidden) */
-        .timeline .event {
-            opacity: 0;
-            transform: translateY(20px); /* Start 20px lower */
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        body.dark-mode .contact-form-container {
+            background-color: #1f2d3d;
         }
 
-        /* Final state (Visible/Animated) */
-        .timeline .event.visible {
-            opacity: 1;
-            transform: translateY(0); /* Move to original position */
+        .contact-form label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #fff;
+            color: #222;
+        }
+
+        body.dark-mode .contact-form input[type="text"],
+        body.dark-mode .contact-form input[type="email"],
+        body.dark-mode .contact-form textarea {
+            background-color: #2c3e50;
+            color: #f0f8ff;
+            border: 1px solid #444;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form button[type="submit"] {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 1.1rem;
         }
 
         /* Footer */
@@ -232,17 +199,36 @@
             transform: scale(1.05);
         }
 
+        /* Message Box (Replaces alert()) */
+        #message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #003366;
+            color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            z-index: 2000;
+            display: none; /* Hidden by default */
+            text-align: center;
+            min-width: 300px;
+            border: 3px solid #ffcc00;
+        }
+        body.dark-mode #message-box {
+            background-color: #001f3f;
+        }
+
+
         /* ---------------------------------- */
         /* Responsive Layout & Mobile Menu CSS */
         /* ---------------------------------- */
-
-        /* 4. Hide the menu toggle button on desktop */
         .menu-toggle {
             display: none; 
         }
 
         @media (max-width: 768px) {
-            /* 1. Initially hide the list on small screens */
             nav ul {
                 flex-direction: column;
                 display: none; /* Hide the list by default */
@@ -251,12 +237,11 @@
                 padding: 10px 0;
                 background-color: #001f3f; /* Overlay background for menu */
                 position: absolute;
-                top: 90px; /* Adjust based on header size */
+                top: 90px; 
                 left: 0;
                 z-index: 1000;
             }
 
-            /* 2. Show the list when a 'menu-open' class is added (via JavaScript) */
             nav ul.menu-open {
                 display: flex;
             }
@@ -267,13 +252,12 @@
             }
             
             nav ul li a {
-                display: block; /* Make links full width */
+                display: block; 
                 margin: 5px 0;
             }
 
-            /* 3. Style and display the toggle button (Hamburger Icon) */
             .menu-toggle {
-                display: block; /* Show the button on mobile */
+                display: block; 
                 background: none;
                 border: none;
                 color: #ffcc00;
@@ -288,7 +272,6 @@
                 box-shadow: none;
             }
 
-            /* Reset button hover for the menu icon */
             .menu-toggle:hover {
                 transform: none;
             }
@@ -310,99 +293,36 @@
             <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button> 
 
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="mission-history.html">Mission History</a></li>
                 <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main role="main">
         <section>
-            <h2>Exploring Mars with Curiosity and Perseverance</h2>
+            <h2>Get in Touch with the Project Team</h2>
             <p>
-                NASA’s Mars Rover Program has revolutionized our understanding of the Red Planet. 
-                From the early missions like Spirit and Opportunity to the latest, cutting-edge 
-                Perseverance rover, each robotic explorer has pushed the boundaries of technology 
-                and human curiosity.
+                Have a question about Mars exploration, the rovers, or just want to send feedback? 
+                Use the form below and we'll get back to you as soon as our Mars schedule allows!
             </p>
-            <!-- Added onerror fallback for external image URL -->
-            <img 
-                src="https://mars.nasa.gov/system/news_items/main_images/9035_PIA25681-FigureA-web.jpg" 
-                alt="Perseverance rover on Mars"
-                onerror="this.onerror=null; this.src='https://placehold.co/750x420/2b3951/ffcc00?text=Rover+Image+Unavailable'"
-            />
-
-            <h3>Curiosity Rover</h3>
-            <p>
-                Launched in 2011 and landing in Gale Crater in August 2012, Curiosity’s mission 
-                was to determine whether Mars ever had the right environmental conditions 
-                to support microbial life.
-            </p>
-
-            <h3>Perseverance Rover</h3>
-            <p>
-                Perseverance landed in February 2021 with advanced instruments designed to collect 
-                and store rock samples for future return to Earth. Its companion helicopter, Ingenuity, 
-                made the first powered flight on another planet.
-            </p>
-        </section>
-
-        <section>
-            <h2>Rover Comparison Table</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Curiosity</th>
-                        <th>Perseverance</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Launch Year</td>
-                        <td>2011</td>
-                        <td>2020</td>
-                    </tr>
-                    <tr>
-                        <td>Landing Site</td>
-                        <td>Gale Crater</td>
-                        <td>Jezero Crater</td>
-                    </tr>
-                    <tr>
-                        <td>Main Objective</td>
-                        <td>Assess habitability and study Martian climate</td>
-                        <td>Search for signs of ancient life and collect samples</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        
-        <!-- Timeline Section (Added to match JavaScript logic) -->
-        <section>
-            <h2>Mission Milestones</h2>
-            <div class="timeline">
-                <div class="event">
-                    <h3>2011: Curiosity Launch</h3>
-                    <p>The Mars Science Laboratory (MSL) mission launches carrying the Curiosity rover.</p>
-                </div>
-                <div class="event">
-                    <h3>2012: Curiosity Landing (Gale Crater)</h3>
-                    <p>Curiosity successfully lands using a complex "Sky Crane" maneuver.</p>
-                </div>
-                <div class="event">
-                    <h3>2020: Perseverance Launch</h3>
-                    <p>The Mars 2020 mission launches, carrying Perseverance and the Ingenuity helicopter.</p>
-                </div>
-                <div class="event">
-                    <h3>2021: Perseverance Landing (Jezero Crater)</h3>
-                    <p>Perseverance lands and begins collecting rock samples for return to Earth.</p>
-                </div>
-                <div class="event">
-                    <h3>2021: Ingenuity's First Flight</h3>
-                    <p>Ingenuity achieves the first powered, controlled flight on another planet.</p>
-                </div>
+            
+            <div class="contact-form-container">
+                <!-- The form is handled by JavaScript to simulate submission -->
+                <form id="contactForm" class="contact-form">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="John Doe">
+                    
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required placeholder="name@example.com">
+                    
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" required placeholder="I have a question about the Ingenuity helicopter..."></textarea>
+                    
+                    <button type="submit">Send Message</button>
+                </form>
             </div>
         </section>
     </main>
@@ -420,6 +340,13 @@
         <button id="darkModeToggle">Toggle Dark Mode</button>
     </footer>
 
+    <!-- Message Box Element -->
+    <div id="message-box">
+        <h3>Message Sent!</h3>
+        <p>Thank you for your interest in the Mars Rover program. We have received your message and will respond shortly.</p>
+        <button onclick="document.getElementById('message-box').style.display = 'none'">Close</button>
+    </div>
+
     <!-- JavaScript Logic -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -427,6 +354,8 @@
             const darkModeToggle = document.getElementById("darkModeToggle");
             const menuToggle = document.querySelector('.menu-toggle');
             const navList = document.querySelector('nav ul');
+            const contactForm = document.getElementById('contactForm');
+            const messageBox = document.getElementById('message-box');
             
             // ===================================
             // 1. Dark Mode Toggle Functionality
@@ -483,6 +412,14 @@
                         menuToggle.innerHTML = '&#9776;'; // Hamburger icon
                     }
                 });
+                
+                // Close menu if a link is clicked (mobile experience)
+                navList.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navList.classList.remove('menu-open');
+                        menuToggle.innerHTML = '&#9776;';
+                    });
+                });
             }
 
             // ===================================
@@ -502,21 +439,25 @@
             });
 
             // ===================================
-            // 4. SIMPLE TIMELINE ANIMATION
+            // 4. Contact Form Submission Handling (FIXED: Removed setTimeout)
             // ===================================
-            const events = document.querySelectorAll(".timeline .event");
-            const revealOnScroll = () => {
-                events.forEach(event => {
-                    const rect = event.getBoundingClientRect();
-                    // Reveal when 100px of the element is visible from the bottom of the viewport
-                    if (rect.top < window.innerHeight - 100) {
-                        event.classList.add("visible");
+            if (contactForm && messageBox) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault(); // Stop the form from actually submitting/reloading
+
+                    // 1. Show the custom message box instantly
+                    messageBox.style.display = 'block';
+
+                    // 2. Clear the form fields for a "fresh start"
+                    contactForm.reset();
+
+                    // 3. Focus the close button for accessibility
+                    const closeButton = messageBox.querySelector('button');
+                    if (closeButton) {
+                        closeButton.focus();
                     }
                 });
-            };
-
-            window.addEventListener("scroll", revealOnScroll);
-            revealOnScroll(); // run on load to show elements already in view
+            }
         });
     </script>
 </body>

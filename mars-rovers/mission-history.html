@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Mission history of the NASA Mars Rovers: Spirit, Opportunity, Curiosity, and Perseverance." />
-    <meta name="keywords" content="NASA, Mars, Rover, History, Spirit, Opportunity, Curiosity, Perseverance" />
-    <meta name="robots" content="noindex" />
+    <meta name="description" content="A detailed timeline of NASA's Mars Rover missions, from Sojourner to Perseverance." />
     <title>NASA Mars Rovers | Mission History</title>
     
     <style>
-        /* --- CORE STYLES --- */
+        /* ==============================
+           NASA Mars Rover Project Styles
+           ============================== */
 
         /* Reset some defaults */
         * {
@@ -18,12 +18,11 @@
             box-sizing: border-box;
         }
 
-        /* Global Body Setup */
+        /* Global Styles */
         body {
             font-family: "Segoe UI", Arial, sans-serif;
             line-height: 1.6;
             background-color: #f4f4f4;
-            
             color: #222;
             padding: 0;
             margin: 0;
@@ -37,18 +36,18 @@
 
         /* Dark Mode */
         body.dark-mode {
-            background-color: #0d1a26; 
-            color: #f0f8ff; 
+            background-color: #0d1a26; /* Deep Midnight Blue */
+            color: #f0f8ff; /* Subtle Off-White */
         }
 
-        /* Header Layout */
+        /* Header */
         header {
             background: linear-gradient(135deg, #003366, #001f3f);
             color: #fff;
             padding: 20px 0;
             text-align: center;
-            border-bottom: 4px solid #ffcc00; /* Key accent color */
-            position: relative; 
+            border-bottom: 4px solid #ffcc00;
+            position: relative;
         }
 
         header h1 {
@@ -56,8 +55,13 @@
             letter-spacing: 1px;
             margin-bottom: 5px;
         }
-        
-        /* Navigation Styles */
+
+        header .tagline {
+            font-style: italic;
+            font-size: 1rem;
+        }
+
+        /* Navigation Bar */
         nav ul {
             list-style: none;
             display: flex;
@@ -85,97 +89,26 @@
             color: #001f3f;
         }
 
-        /* Main Content and Typography */
+        /* Main Content */
         main {
             padding: 25px;
-            max-width: 900px;
+            max-width: 1000px;
             margin: auto;
         }
 
         main h2, main h3 {
-            color: #003366; /* Main NASA blue */
-            margin-bottom: 10px;
+            color: #003366;
+            margin-bottom: 15px;
+            text-align: center;
         }
 
+        /* Dark Mode Headings */
         body.dark-mode main h2,
         body.dark-mode main h3 {
-            color: #4dc4ff; /* Light blue accent for dark mode */
+            color: #4dc4ff; /* Electric Cyan */
         }
 
-        main img {
-            width: 100%;
-            max-width: 750px;
-            border-radius: 10px;
-            margin: 15px auto; 
-            display: block;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Table Design */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        table th, table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        table th {
-            background-color: #003366;
-            color: white;
-        }
-
-        body.dark-mode table {
-            background-color: #1f2d3d; 
-            color: #f0f8ff;
-        }
-
-        /* Timeline / Mission Milestones */
-        .timeline {
-            border-left: 4px solid #ffcc00; 
-            padding-left: 20px;
-            margin: 30px 0;
-        }
-
-        .timeline .event {
-            margin-bottom: 30px;
-            padding-left: 10px;
-            position: relative;
-        }
-
-        .timeline .event::before {
-            content: '';
-            position: absolute;
-            left: -28px;
-            top: 5px;
-            width: 15px;
-            height: 15px;
-            background: #003366; 
-            border-radius: 50%;
-            border: 3px solid #ffcc00;
-        }
-        
-        /* Timeline Animation CSS */
-        .timeline .event {
-            opacity: 0;
-            transform: translateY(20px); 
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .timeline .event.visible {
-            opacity: 1;
-            transform: translateY(0); 
-        }
-
-        /* Footer and Buttons */
+        /* Footer */
         footer {
             text-align: center;
             background-color: #001f3f;
@@ -191,7 +124,11 @@
             text-decoration: none;
         }
 
-        /* Button Styling */
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Button Styling (Used for Dark Mode and Menu Toggle) */
         button {
             background-color: #ffcc00;
             color: #001f3f;
@@ -202,7 +139,7 @@
             cursor: pointer;
             font-weight: bold;
             transition: background-color 0.3s, transform 0.2s;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
         }
 
         button:hover {
@@ -210,29 +147,50 @@
             transform: scale(1.05);
         }
 
-        /* RESPONSIVENESS AND MOBILE MENU */
+        /* Message Box (Replaces alert()) */
+        #message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #003366;
+            color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            z-index: 2000;
+            display: none; /* Hidden by default */
+            text-align: center;
+            min-width: 300px;
+            border: 3px solid #ffcc00;
+        }
 
-        /* 4. Hide the menu toggle button on desktop */
+        body.dark-mode #message-box {
+            background-color: #001f3f;
+        }
+
+
+        /* ---------------------------------- */
+        /* Responsive Layout & Mobile Menu CSS */
+        /* ---------------------------------- */
         .menu-toggle {
             display: none; 
         }
 
         @media (max-width: 768px) {
-            /* 1. Mobile navigation list is hidden by default */
             nav ul {
                 flex-direction: column;
-                display: none; 
+                display: none; /* Hide the list by default */
                 width: 100%;
                 margin-top: 0;
                 padding: 10px 0;
-                background-color: #001f3f; 
+                background-color: #001f3f; /* Overlay background for menu */
                 position: absolute;
                 top: 90px; 
                 left: 0;
                 z-index: 1000;
             }
 
-            /* 2. Menu opens with this class */
             nav ul.menu-open {
                 display: flex;
             }
@@ -247,7 +205,6 @@
                 margin: 5px 0;
             }
 
-            /* 3. Show the hamburger icon */
             .menu-toggle {
                 display: block; 
                 background: none;
@@ -267,6 +224,158 @@
             .menu-toggle:hover {
                 transform: none;
             }
+
+            main {
+                padding: 15px;
+            }
+        }
+        
+        /* ==============================
+           TIMELINE SPECIFIC STYLING
+           ============================== */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* The main vertical line */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #003366; /* NASA Blue */
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        body.dark-mode .timeline::after {
+            background-color: #ffcc00; /* Gold in dark mode */
+        }
+        
+        /* Container around content */
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        /* The circles on the timeline */
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: #ffcc00; /* Gold */
+            border: 4px solid #003366; /* NASA Blue border */
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        body.dark-mode .timeline-container::after {
+            background-color: #0d1a26; /* Dark background dot */
+            border-color: #ffcc00; /* Gold border */
+        }
+
+        /* Left side content */
+        .left {
+            left: 0;
+        }
+
+        /* Right side content */
+        .right {
+            left: 50%;
+        }
+
+        /* Fix the position of the markers (circles) on the right side */
+        .right::after {
+            left: -16px;
+        }
+        
+        /* Content boxes */
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: #fff;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #003366;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode .timeline-content {
+            background-color: #1f2d3d;
+            border-left: 5px solid #4dc4ff;
+        }
+
+        .timeline-content:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .timeline-content h4 {
+            font-size: 1.3rem;
+            color: #004080;
+            margin-bottom: 5px;
+        }
+        
+        body.dark-mode .timeline-content h4 {
+            color: #ffcc00;
+        }
+        
+        .timeline-content .date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        body.dark-mode .timeline-content .date {
+            color: #aaa;
+        }
+
+        /* Media queries for responsiveness */
+        @media screen and (max-width: 600px) {
+            /* The main timeline vertical line should go to the left side */
+            .timeline::after {
+                left: 31px;
+            }
+
+            /* All timeline containers should take the full width */
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                /* --- FIX: Added vertical margin to separate stacked items --- */
+                margin-bottom: 20px; 
+            }
+
+            /* Make sure all elements are left aligned */
+            .timeline-container.left,
+            .timeline-container.right {
+                left: 0%;
+            }
+
+            /* Fix the circle position for all containers */
+            .timeline-container::after,
+            .right::after {
+                left: 15px;
+            }
+
+            /* Adjust the content box border */
+            .timeline-content {
+                border-left: none;
+                border-top: 5px solid #003366;
+            }
+            body.dark-mode .timeline-content {
+                border-top: 5px solid #4dc4ff;
+            }
         }
     </style>
 </head>
@@ -274,113 +383,85 @@
 <body>
     <header>
         <h1>NASA Mars Rovers</h1>
-        <p class="tagline">A Detailed Look at Exploration History</p>
+        <p class="tagline">Robotic Explorers on the Red Planet</p>
         
         <nav role="navigation">
             <!-- Menu Toggle Button (Hamburger icon for mobile) -->
             <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button> 
 
             <ul>
-                <!-- Updated active link for Mission History page -->
                 <li><a href="index.html">Home</a></li>
                 <li><a href="mission-history.html" class="active">Mission History</a></li>
                 <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main role="main">
         <section>
-            <h2>The Legacy of Martian Exploration</h2>
-            <p>
-                The journey of NASA’s robotic explorers began long before the current generation. 
-                Each mission, from the original Mars Exploration Rovers (MER) to the cutting-edge 
-                Mars 2020 mission, has built upon the discoveries and lessons learned from its 
-                predecessors, fundamentally changing our perception of Mars from a cold, dead 
-                world to a dynamic planet that once held promise for life.
-            </p>
-        </section>
-
-        <section>
-            <h2>Spirit and Opportunity (MER Program)</h2>
-            <p>
-                Launched in 2003, the twin rovers Spirit and Opportunity were designed for a 
-                90-day mission. They far exceeded expectations, providing evidence of past 
-                liquid water on Mars. Opportunity operated for almost 15 years, covering 
-                over 45 kilometers and proving the exceptional longevity of solar-powered exploration 
-                on the Martian surface. Spirit also operated for over six years before getting stuck 
-                in soft sand. Their work set the stage for the larger, nuclear-powered rovers to follow.
-            </p>
-            <img 
-                src="https://mars.nasa.gov/system/news_items/main_images/8563_PIA23506_Opportunity_Finale.jpg" 
-                alt="Opportunity rover's final panorama"
-                onerror="this.onerror=null; this.src='https://placehold.co/750x420/2b3951/ffcc00?text=Spirit+and+Opportunity+Image'"
-            />
-        </section>
-
-        <section>
-            <h2>Curiosity: The Search for Habitability</h2>
-            <p>
-                The Curiosity rover, part of the Mars Science Laboratory (MSL) mission, marked a 
-                major leap forward in size and sophistication. Landing in 2012, its goal was 
-                to assess the past and present habitability of the planet, particularly within Gale Crater. 
-                Curiosity confirmed that Mars once had flowing water and the necessary chemical 
-                building blocks to support microbial life, fulfilling the primary objective of the mission 
-                and paving the way for the direct search for biosignatures.
-            </p>
-        </section>
-        
-        <!-- Expanded Timeline Section -->
-        <section>
             <h2>Detailed Mission Timeline</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto 30px;">
+                Explore the key milestones and missions in NASA's Mars Exploration Program, charting humanity's journey across the Red Planet.
+            </p>
+
             <div class="timeline">
-                <!-- ADDED PRECURSORS HERE -->
-                <div class="event">
-                    <h3>1975: Viking Program Launch</h3>
-                    <p>NASA launches the Viking 1 and 2 missions, which successfully placed two orbiters and two landers on Mars, providing the first color images from the surface and conducting complex biology experiments.</p>
-                </div>
-                <div class="event">
-                    <h3>1997: Sojourner Rover (Pathfinder Mission)</h3>
-                    <p>The Mars Pathfinder mission successfully deploys Sojourner, the first wheeled rover to operate on the surface of Mars, proving the concept of mobile exploration.</p>
-                </div>
-                <!-- END ADDED PRECURSORS -->
                 
-                <div class="event">
-                    <h3>2003: Spirit and Opportunity Launch</h3>
-                    <p>NASA launches the two Mars Exploration Rovers, Spirit and Opportunity.</p>
+                <!-- 1. Sojourner (Mars Pathfinder) -->
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <span class="date">July 4, 1997 (Landing)</span>
+                        <h4>Sojourner: The First Rover</h4>
+                        <p>
+                            Launched as part of the Mars Pathfinder mission, Sojourner was the first wheeled vehicle to explore the surface of Mars. It operated for 83 sols (Martian days), proving the concept of rovers and inspiring future designs.
+                        </p>
+                    </div>
                 </div>
-                <div class="event">
-                    <h3>2004: MER Landings</h3>
-                    <p>Spirit lands in Gusev Crater (January 3); Opportunity lands in Meridiani Planum (January 24).</p>
+
+                <!-- 2. Spirit & Opportunity (MER) -->
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <span class="date">January 2004 (Landing)</span>
+                        <h4>Spirit and Opportunity (MER)</h4>
+                        <p>
+                            The twin rovers, Spirit and Opportunity, were designed for 90-sol missions to search for signs of past water activity. Spirit operated for six years, while the remarkably resilient Opportunity operated for nearly 15 years, covering 45 km.
+                        </p>
+                    </div>
                 </div>
-                <div class="event">
-                    <h3>2010: Spirit Mission Ends</h3>
-                    <p>Spirit becomes stuck in soft sand and ceases communications the following year.</p>
+                
+                <!-- 3. Curiosity (MSL) -->
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <span class="date">August 6, 2012 (Landing)</span>
+                        <h4>Curiosity: Martian Climate and Geology</h4>
+                        <p>
+                            The Mars Science Laboratory (MSL) mission delivered Curiosity, a car-sized rover, to Gale Crater. Its primary goal is to assess whether Mars ever had an environment capable of supporting microbial life. It continues its mission today.
+                        </p>
+                    </div>
                 </div>
-                <div class="event">
-                    <h3>2011: Curiosity Launch</h3>
-                    <p>The Mars Science Laboratory (MSL) mission launches carrying the Curiosity rover.</p>
+
+                <!-- 4. Perseverance (Mars 2020) -->
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <span class="date">February 18, 2021 (Landing)</span>
+                        <h4>Perseverance: Seeking Ancient Life</h4>
+                        <p>
+                            Landing in Jezero Crater, Perseverance is searching for signs of ancient microbial life and is collecting core samples for eventual return to Earth. It also deployed the Ingenuity helicopter, the first powered aircraft on another planet.
+                        </p>
+                    </div>
                 </div>
-                <div class="event">
-                    <h3>2012: Curiosity Landing (Gale Crater)</h3>
-                    <p>Curiosity successfully lands and begins its mission to assess past habitability.</p>
+                
+                <!-- 5. Future Sample Return -->
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <span class="date">Late 2020s (Planned)</span>
+                        <h4>Mars Sample Return Mission</h4>
+                        <p>
+                            A complex, multi-mission effort to bring the samples collected by Perseverance back to Earth for detailed study by scientists worldwide, fulfilling a high-priority goal of planetary science.
+                        </p>
+                    </div>
                 </div>
-                <div class="event">
-                    <h3>2018: Opportunity Mission Ends</h3>
-                    <p>After a planet-wide dust storm, NASA declares the Opportunity mission complete.</p>
-                </div>
-                <div class="event">
-                    <h3>2020: Perseverance Launch</h3>
-                    <p>The Mars 2020 mission launches, carrying Perseverance and the Ingenuity helicopter.</p>
-                </div>
-                <div class="event">
-                    <h3>2021: Perseverance Landing (Jezero Crater)</h3>
-                    <p>Perseverance lands and begins collecting rock samples.</p>
-                </div>
-                <div class="event">
-                    <h3>2021: Ingenuity's First Flight</h3>
-                    <p>Ingenuity achieves the first powered, controlled flight on another planet.</p>
-                </div>
+
             </div>
         </section>
     </main>
@@ -398,7 +479,106 @@
         <button id="darkModeToggle">Toggle Dark Mode</button>
     </footer>
 
-    <!-- Link the external JavaScript file (script.js) -->
-    <script src="script.js"></script>
+    <!-- Message Box Element -->
+    <div id="message-box">
+        <h3>System Message</h3>
+        <p>An action was triggered, but this is just a placeholder message for custom notifications.</p>
+        <button onclick="document.getElementById('message-box').style.display = 'none'">Close</button>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const body = document.body;
+            const darkModeToggle = document.getElementById("darkModeToggle");
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navList = document.querySelector('nav ul');
+            
+            // ===================================
+            // 1. Dark Mode Toggle Functionality
+            // ===================================
+            
+            // Function to set the theme state (dark/light)
+            const applyDarkMode = (isDark) => {
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                    if (darkModeToggle) {
+                        darkModeToggle.textContent = 'Toggle Light Mode';
+                    }
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    if (darkModeToggle) {
+                        darkModeToggle.textContent = 'Toggle Dark Mode';
+                    }
+                    localStorage.setItem('theme', 'light');
+                }
+            };
+            
+            // Load saved preference on page load
+            const savedTheme = localStorage.getItem("theme");
+            
+            if (savedTheme === "dark") {
+                applyDarkMode(true);
+            } else if (savedTheme === "light") {
+                applyDarkMode(false);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // Fallback: Check operating system preference
+                applyDarkMode(true);
+            }
+
+            // Event listener for the toggle button
+            if (darkModeToggle) {
+                darkModeToggle.addEventListener("click", () => {
+                    const isCurrentlyDark = body.classList.contains('dark-mode');
+                    applyDarkMode(!isCurrentlyDark);
+                });
+            }
+
+            // ===================================
+            // 2. Responsive Menu Toggle Functionality
+            // ===================================
+
+            if (menuToggle && navList) {
+                menuToggle.addEventListener('click', () => {
+                    navList.classList.toggle('menu-open');
+                    // Toggle hamburger icon to an 'X'
+                    if (navList.classList.contains('menu-open')) {
+                        menuToggle.innerHTML = '&#10005;'; // X mark
+                    } else {
+                        menuToggle.innerHTML = '&#9776;'; // Hamburger icon
+                    }
+                });
+                
+                // Close menu if a link is clicked (mobile experience)
+                navList.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        // Check if the link is not the current page
+                        if (!link.classList.contains('active')) {
+                            // Only close if we are navigating away (though in this environment, it reloads anyway)
+                            navList.classList.remove('menu-open');
+                            menuToggle.innerHTML = '&#9776;';
+                        }
+                    });
+                });
+            }
+
+            // ===================================
+            // 3. ACCESSIBILITY FOCUS RING
+            // ===================================
+            let mouseDown = false;
+            document.body.addEventListener("mousedown", () => {
+                mouseDown = true;
+                document.body.classList.add("using-mouse");
+            });
+
+            document.body.addEventListener("keydown", (e) => {
+                if (e.key === "Tab") {
+                    mouseDown = false;
+                    document.body.classList.remove("using-mouse");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
