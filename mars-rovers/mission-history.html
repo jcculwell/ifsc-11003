@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A detailed timeline of NASA's Mars Rover missions, from Sojourner to Perseverance." />
-    <title>NASA Mars Rovers | Mission History</title>
+    <meta name="description" content="Mission History of NASA's Mars Rovers" />
+    <title>NASA Mars Rovers ©2025 | Mission History</title>
     
+    <!-- EMBEDDED CSS -->
     <style>
         /* ==============================
            NASA Mars Rover Project Styles
            ============================== */
 
-        /* Reset some defaults */
         * {
             margin: 0;
             padding: 0;
@@ -24,20 +24,20 @@
             line-height: 1.6;
             background-color: #f4f4f4;
             color: #222;
-            padding: 0;
-            margin: 0;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* ACCESSIBILITY: Disable focus ring for mouse users */
-        body.using-mouse :focus {
-            outline: none;
+            
+            background-image: url("assets/css/img/nasa-logo.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed; 
+            background-size: 500px; 
+            background-blend-mode: overlay; 
         }
 
         /* Dark Mode */
         body.dark-mode {
-            background-color: #0d1a26; /* Deep Midnight Blue */
-            color: #f0f8ff; /* Subtle Off-White */
+            background-color: #0d1a26; 
+            color: #f0f8ff; 
+            background-blend-mode: soft-light;
         }
 
         /* Header */
@@ -61,7 +61,7 @@
             font-size: 1rem;
         }
 
-        /* Navigation Bar */
+        /* Navigation */
         nav ul {
             list-style: none;
             display: flex;
@@ -92,20 +92,74 @@
         /* Main Content */
         main {
             padding: 25px;
-            max-width: 1000px;
+            max-width: 900px;
             margin: auto;
+            background-color: rgba(255, 255, 255, 0.9); 
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        body.dark-mode main {
+            background-color: rgba(13, 26, 38, 0.9);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
         main h2, main h3 {
             color: #003366;
-            margin-bottom: 15px;
-            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 20px;
         }
 
-        /* Dark Mode Headings */
         body.dark-mode main h2,
         body.dark-mode main h3 {
-            color: #4dc4ff; /* Electric Cyan */
+            color: #4dc4ff;
+        }
+
+        /* Timeline */
+        .timeline {
+            border-left: 4px solid #ffcc00;
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        .timeline .event {
+            margin-bottom: 30px;
+            padding-left: 10px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .timeline .event.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline .event::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background: #003366;
+            border-radius: 50%;
+            border: 3px solid #ffcc00;
+        }
+        
+        /* Lists */
+        main ul {
+            list-style: disc;
+            margin-left: 25px;
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+        
+        main ul li {
+            margin-bottom: 5px;
         }
 
         /* Footer */
@@ -115,7 +169,6 @@
             color: #fff;
             padding: 20px 0;
             margin-top: 40px;
-            font-size: 0.9rem;
             border-top: 3px solid #ffcc00;
         }
 
@@ -124,11 +177,7 @@
             text-decoration: none;
         }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Button Styling (Used for Dark Mode and Menu Toggle) */
+        /* Buttons & Mobile Menu */
         button {
             background-color: #ffcc00;
             color: #001f3f;
@@ -138,8 +187,7 @@
             margin: 10px;
             cursor: pointer;
             font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
         }
 
         button:hover {
@@ -147,234 +195,30 @@
             transform: scale(1.05);
         }
 
-        /* Message Box (Replaces alert()) */
-        #message-box {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #003366;
-            color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            z-index: 2000;
-            display: none; /* Hidden by default */
-            text-align: center;
-            min-width: 300px;
-            border: 3px solid #ffcc00;
-        }
-
-        body.dark-mode #message-box {
-            background-color: #001f3f;
-        }
-
-
-        /* ---------------------------------- */
-        /* Responsive Layout & Mobile Menu CSS */
-        /* ---------------------------------- */
-        .menu-toggle {
-            display: none; 
-        }
+        .menu-toggle { display: none; }
 
         @media (max-width: 768px) {
             nav ul {
                 flex-direction: column;
-                display: none; /* Hide the list by default */
+                display: none;
                 width: 100%;
-                margin-top: 0;
-                padding: 10px 0;
-                background-color: #001f3f; /* Overlay background for menu */
+                background-color: #001f3f;
                 position: absolute;
-                top: 90px; 
+                top: 90px;
                 left: 0;
                 z-index: 1000;
             }
-
-            nav ul.menu-open {
-                display: flex;
-            }
-
-            nav ul li {
-                margin: 5px 15px;
-                text-align: center;
-            }
+            nav ul.menu-open { display: flex; }
+            nav ul li { margin: 10px 0; }
             
-            nav ul li a {
-                display: block; 
-                margin: 5px 0;
-            }
-
             .menu-toggle {
-                display: block; 
+                display: block;
                 background: none;
-                border: none;
-                color: #ffcc00;
                 font-size: 2rem;
-                cursor: pointer;
                 position: absolute;
                 top: 20px;
                 right: 20px;
-                z-index: 1001; 
-                padding: 0;
-                margin: 0;
-                box-shadow: none;
-            }
-
-            .menu-toggle:hover {
-                transform: none;
-            }
-
-            main {
-                padding: 15px;
-            }
-        }
-        
-        /* ==============================
-           TIMELINE SPECIFIC STYLING
-           ============================== */
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
-        
-        /* The main vertical line */
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: #003366; /* NASA Blue */
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-        }
-
-        body.dark-mode .timeline::after {
-            background-color: #ffcc00; /* Gold in dark mode */
-        }
-        
-        /* Container around content */
-        .timeline-container {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-        }
-
-        /* The circles on the timeline */
-        .timeline-container::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            right: -17px;
-            background-color: #ffcc00; /* Gold */
-            border: 4px solid #003366; /* NASA Blue border */
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-        
-        body.dark-mode .timeline-container::after {
-            background-color: #0d1a26; /* Dark background dot */
-            border-color: #ffcc00; /* Gold border */
-        }
-
-        /* Left side content */
-        .left {
-            left: 0;
-        }
-
-        /* Right side content */
-        .right {
-            left: 50%;
-        }
-
-        /* Fix the position of the markers (circles) on the right side */
-        .right::after {
-            left: -16px;
-        }
-        
-        /* Content boxes */
-        .timeline-content {
-            padding: 20px 30px;
-            background-color: #fff;
-            position: relative;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #003366;
-            transition: all 0.3s ease;
-        }
-        
-        body.dark-mode .timeline-content {
-            background-color: #1f2d3d;
-            border-left: 5px solid #4dc4ff;
-        }
-
-        .timeline-content:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            transform: translateY(-2px);
-        }
-        
-        .timeline-content h4 {
-            font-size: 1.3rem;
-            color: #004080;
-            margin-bottom: 5px;
-        }
-        
-        body.dark-mode .timeline-content h4 {
-            color: #ffcc00;
-        }
-        
-        .timeline-content .date {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-        
-        body.dark-mode .timeline-content .date {
-            color: #aaa;
-        }
-
-        /* Media queries for responsiveness */
-        @media screen and (max-width: 600px) {
-            /* The main timeline vertical line should go to the left side */
-            .timeline::after {
-                left: 31px;
-            }
-
-            /* All timeline containers should take the full width */
-            .timeline-container {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-                /* --- FIX: Added vertical margin to separate stacked items --- */
-                margin-bottom: 20px; 
-            }
-
-            /* Make sure all elements are left aligned */
-            .timeline-container.left,
-            .timeline-container.right {
-                left: 0%;
-            }
-
-            /* Fix the circle position for all containers */
-            .timeline-container::after,
-            .right::after {
-                left: 15px;
-            }
-
-            /* Adjust the content box border */
-            .timeline-content {
-                border-left: none;
-                border-top: 5px solid #003366;
-            }
-            body.dark-mode .timeline-content {
-                border-top: 5px solid #4dc4ff;
+                color: #ffcc00;
             }
         }
     </style>
@@ -386,9 +230,7 @@
         <p class="tagline">Robotic Explorers on the Red Planet</p>
         
         <nav role="navigation">
-            <!-- Menu Toggle Button (Hamburger icon for mobile) -->
             <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button> 
-
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="mission-history.html" class="active">Mission History</a></li>
@@ -400,93 +242,83 @@
 
     <main role="main">
         <section>
-            <h2>Detailed Mission Timeline</h2>
-            <p style="text-align: center; max-width: 600px; margin: 0 auto 30px;">
-                Explore the key milestones and missions in NASA's Mars Exploration Program, charting humanity's journey across the Red Planet.
+            <h2>A Legacy of Exploration and Discovery</h2>
+            <p>
+                The history of NASA's Mars Exploration Rover program is a story of relentless technological advancement and profound scientific breakthroughs. These robotic geologists have spent decades proving that the Red Planet 
+                was once a habitable world, radically transforming planetary science and setting the stage for future human missions.
             </p>
+        </section>
 
+        <section>
+            <h3>Spirit and Opportunity (MER Missions)</h3>
+            <p>
+                Launched as the twin Mars Exploration Rovers (MER) in 2003, these rugged explorers were only designed 
+                for 90 Martian days (Sols). Instead, they far exceeded their design life, operating for years and 
+                confirming unequivocally that liquid water once persisted on the Martian surface.
+            </p>
+            <ul>
+                <li>Spirit (MER-A): Operated for over six years, discovering evidence of ancient hot springs and carbonate rocks, suggesting a warmer, wetter past.</li>
+                <li>Opportunity (MER-B): Operated for nearly fifteen years and drove over 45 kilometers (a marathon distance), making the landmark discovery of hematite spheres, strong evidence of past liquid water.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Curiosity (MSL Mission)</h3>
+            <p>
+                The Curiosity rover landed in Gale Crater in 2012, ushering in the era of the Mars Science 
+                Laboratory (MSL) mission. Its primary objective was to assess Mars's past and present habitability. 
+                Curiosity confirmed that Mars had all the chemical ingredients and a long-lived water-based 
+                environment (a vast lake system) necessary to support microbial life billions of years ago.
+            </p>
+            <p>
+                The rover utilizes the ChemCam instrument, which can vaporize rock and soil from a distance using a powerful laser, 
+                allowing scientists to analyze the resulting plasma with a spectrometer.
+            </p>
+        </section>
+
+        <section>
+            <h3>Perseverance (Mars 2020 Mission)</h3>
+            <p>
+                Landing in Jezero Crater in 2021, the Perseverance rover represents NASA's most ambitious effort 
+                yet: astrobiology—the active search for signs of ancient life. Its central role is the collection and sealing of 
+                highly valuable rock and soil cores, which will be returned to Earth by a future sample-return mission.
+            </p>
+            <ul>
+                <li>Ingenuity: Perseverance carried the Ingenuity helicopter, demonstrating powered, controlled flight on another planet for the first time in history.</li>
+                <li>MOXIE (Mars Oxygen In-Situ Resource Utilization Experiment): This experimental instrument successfully generated breathable oxygen from the thin, carbon-dioxide-rich Martian atmosphere, a critical step for future human missions.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Detailed Mission Milestones</h2>
             <div class="timeline">
-                
-                <!-- 1. Sojourner (Mars Pathfinder) -->
-                <div class="timeline-container left">
-                    <div class="timeline-content">
-                        <span class="date">July 4, 1997 (Landing)</span>
-                        <h4>Sojourner: The First Rover</h4>
-                        <p>
-                            Launched as part of the Mars Pathfinder mission, Sojourner was the first wheeled vehicle to explore the surface of Mars. It operated for 83 sols (Martian days), proving the concept of rovers and inspiring future designs.
-                        </p>
-                    </div>
+                <div class="event">
+                    <h3>2004: Spirit & Opportunity Landings</h3>
+                    <p>The twin rovers begin their mission, quickly discovering conclusive evidence of past water activity.</p>
                 </div>
-
-                <!-- 2. Spirit & Opportunity (MER) -->
-                <div class="timeline-container right">
-                    <div class="timeline-content">
-                        <span class="date">January 2004 (Landing)</span>
-                        <h4>Spirit and Opportunity (MER)</h4>
-                        <p>
-                            The twin rovers, Spirit and Opportunity, were designed for 90-sol missions to search for signs of past water activity. Spirit operated for six years, while the remarkably resilient Opportunity operated for nearly 15 years, covering 45 km.
-                        </p>
-                    </div>
+                <div class="event">
+                    <h3>2012: Curiosity Lands in Gale Crater</h3>
+                    <p>The Mars Science Laboratory mission begins, focusing on habitability and climbing Mount Sharp.</p>
                 </div>
-                
-                <!-- 3. Curiosity (MSL) -->
-                <div class="timeline-container left">
-                    <div class="timeline-content">
-                        <span class="date">August 6, 2012 (Landing)</span>
-                        <h4>Curiosity: Martian Climate and Geology</h4>
-                        <p>
-                            The Mars Science Laboratory (MSL) mission delivered Curiosity, a car-sized rover, to Gale Crater. Its primary goal is to assess whether Mars ever had an environment capable of supporting microbial life. It continues its mission today.
-                        </p>
-                    </div>
+                <div class="event">
+                    <h3>2018: Opportunity Mission Ends</h3>
+                    <p>After nearly 15 years, the durable rover ceases communications following a planet-wide dust storm.</p>
                 </div>
-
-                <!-- 4. Perseverance (Mars 2020) -->
-                <div class="timeline-container right">
-                    <div class="timeline-content">
-                        <span class="date">February 18, 2021 (Landing)</span>
-                        <h4>Perseverance: Seeking Ancient Life</h4>
-                        <p>
-                            Landing in Jezero Crater, Perseverance is searching for signs of ancient microbial life and is collecting core samples for eventual return to Earth. It also deployed the Ingenuity helicopter, the first powered aircraft on another planet.
-                        </p>
-                    </div>
+                <div class="event">
+                    <h3>2021: Perseverance Landing & First Flight</h3>
+                    <p>Perseverance begins its sample caching mission, and the Ingenuity helicopter achieves the first extraterrestrial flight.</p>
                 </div>
-                
-                <!-- 5. Future Sample Return -->
-                <div class="timeline-container left">
-                    <div class="timeline-content">
-                        <span class="date">Late 2020s (Planned)</span>
-                        <h4>Mars Sample Return Mission</h4>
-                        <p>
-                            A complex, multi-mission effort to bring the samples collected by Perseverance back to Earth for detailed study by scientists worldwide, fulfilling a high-priority goal of planetary science.
-                        </p>
-                    </div>
-                </div>
-
             </div>
         </section>
     </main>
 
     <footer role="contentinfo">
-        <p>
-            This website was created as a student project for educational purposes. 
-            NASA is not affiliated with or endorsing this work.
-        </p>
-        <p>
-            Contact: <a href="mailto:jcculwell@ualr.edu">jcculwell@ualr.edu</a> |
-            <a href="https://mars.nasa.gov" target="_blank">Visit NASA Mars</a>
-        </p>
-        <!-- Dark Mode Toggle Button (Used in JS) -->
+        <p>James Culwell ©2025:
+          This website is for educational purposes.</p>
         <button id="darkModeToggle">Toggle Dark Mode</button>
     </footer>
 
-    <!-- Message Box Element -->
-    <div id="message-box">
-        <h3>System Message</h3>
-        <p>An action was triggered, but this is just a placeholder message for custom notifications.</p>
-        <button onclick="document.getElementById('message-box').style.display = 'none'">Close</button>
-    </div>
-
-    <!-- JavaScript Logic -->
+    <!-- EMBEDDED JAVASCRIPT -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const body = document.body;
@@ -494,90 +326,50 @@
             const menuToggle = document.querySelector('.menu-toggle');
             const navList = document.querySelector('nav ul');
             
-            // ===================================
-            // 1. Dark Mode Toggle Functionality
-            // ===================================
-            
-            // Function to set the theme state (dark/light)
+            // Dark Mode Logic
             const applyDarkMode = (isDark) => {
                 if (isDark) {
                     body.classList.add('dark-mode');
-                    if (darkModeToggle) {
-                        darkModeToggle.textContent = 'Toggle Light Mode';
-                    }
+                    if (darkModeToggle) darkModeToggle.textContent = 'Toggle Light Mode';
                     localStorage.setItem('theme', 'dark');
                 } else {
                     body.classList.remove('dark-mode');
-                    if (darkModeToggle) {
-                        darkModeToggle.textContent = 'Toggle Dark Mode';
-                    }
+                    if (darkModeToggle) darkModeToggle.textContent = 'Toggle Dark Mode';
                     localStorage.setItem('theme', 'light');
                 }
             };
             
-            // Load saved preference on page load
+            // Apply saved theme on load
             const savedTheme = localStorage.getItem("theme");
-            
-            if (savedTheme === "dark") {
-                applyDarkMode(true);
-            } else if (savedTheme === "light") {
-                applyDarkMode(false);
-            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                // Fallback: Check operating system preference
-                applyDarkMode(true);
-            }
+            if (savedTheme === "dark") applyDarkMode(true);
 
-            // Event listener for the toggle button
             if (darkModeToggle) {
                 darkModeToggle.addEventListener("click", () => {
-                    const isCurrentlyDark = body.classList.contains('dark-mode');
-                    applyDarkMode(!isCurrentlyDark);
+                    applyDarkMode(!body.classList.contains('dark-mode'));
                 });
             }
 
-            // ===================================
-            // 2. Responsive Menu Toggle Functionality
-            // ===================================
-
+            // Mobile Menu Toggle
             if (menuToggle && navList) {
                 menuToggle.addEventListener('click', () => {
                     navList.classList.toggle('menu-open');
-                    // Toggle hamburger icon to an 'X'
-                    if (navList.classList.contains('menu-open')) {
-                        menuToggle.innerHTML = '&#10005;'; // X mark
-                    } else {
-                        menuToggle.innerHTML = '&#9776;'; // Hamburger icon
-                    }
-                });
-                
-                // Close menu if a link is clicked (mobile experience)
-                navList.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        // Check if the link is not the current page
-                        if (!link.classList.contains('active')) {
-                            // Only close if we are navigating away (though in this environment, it reloads anyway)
-                            navList.classList.remove('menu-open');
-                            menuToggle.innerHTML = '&#9776;';
-                        }
-                    });
+                    menuToggle.innerHTML = navList.classList.contains('menu-open') ? '&#10005;' : '&#9776;';
                 });
             }
 
-            // ===================================
-            // 3. ACCESSIBILITY FOCUS RING
-            // ===================================
-            let mouseDown = false;
-            document.body.addEventListener("mousedown", () => {
-                mouseDown = true;
-                document.body.classList.add("using-mouse");
-            });
-
-            document.body.addEventListener("keydown", (e) => {
-                if (e.key === "Tab") {
-                    mouseDown = false;
-                    document.body.classList.remove("using-mouse");
-                }
-            });
+            // Timeline Animation
+            const events = document.querySelectorAll(".timeline .event");
+            const revealOnScroll = () => {
+                events.forEach(event => {
+                    const rect = event.getBoundingClientRect();
+                    // Reveal element if it is within 100px of the viewport bottom
+                    if (rect.top < window.innerHeight - 100) {
+                        event.classList.add("visible");
+                    }
+                });
+            };
+            window.addEventListener("scroll", revealOnScroll);
+            revealOnScroll(); // Run once on load to catch elements already visible
         });
     </script>
 </body>
