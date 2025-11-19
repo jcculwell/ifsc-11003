@@ -3,19 +3,267 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NASA Mars Rover Exploring the Red Planet | Mission Control</title>
+    <meta name="description" content="NASA Mars Rovers – Robotic explorers on the Red Planet" />
+    <title>NASA Mars Rovers ©2025 | Home</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ==============================
+           NASA Mars Rover Project Styles
+           ============================== */
 
-    <link href="assets/css/style.css" rel="stylesheet" />
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #222;
+            
+            /* --- BACKGROUND IMAGE FIX --- */
+            /* Note: If this doesn't load, check if your file is named .png or .png.png */
+            background-image: url("assets/css/img/nasa-logo.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed; /* Keeps logo centered when scrolling */
+            background-size: 500px;       /* Sets a good size for the logo */
+            
+            /* This helps fade the logo so you can read the text over it */
+            background-blend-mode: overlay; 
+        }
+
+        /* Accessibility: Remove outline for mouse users */
+        body.using-mouse :focus {
+            outline: none;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background-color: #0d1a26; 
+            color: #f0f8ff; 
+            /* In dark mode, we blend the logo differently */
+            background-blend-mode: soft-light;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #003366, #001f3f);
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 4px solid #ffcc00;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        header .tagline {
+            font-style: italic;
+            font-size: 1rem;
+        }
+
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #004080;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: #ffcc00;
+            color: #001f3f;
+        }
+
+        /* Main Content */
+        main {
+            padding: 25px;
+            max-width: 900px;
+            margin: auto;
+            /* Adds a slight white background behind text so it's readable over the logo */
+            background-color: rgba(255, 255, 255, 0.8); 
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        body.dark-mode main {
+            background-color: rgba(13, 26, 38, 0.85);
+        }
+
+        main h2, main h3 {
+            color: #003366;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        body.dark-mode main h2,
+        body.dark-mode main h3 {
+            color: #4dc4ff;
+        }
+
+        /* Images */
+        main img {
+            width: 100%;
+            max-width: 750px;
+            border-radius: 10px;
+            margin: 15px auto;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #003366;
+            color: white;
+        }
+
+        body.dark-mode table {
+            background-color: #1f2d3d;
+            color: #f0f8ff;
+        }
+        
+        body.dark-mode table th {
+            background-color: #004080;
+        }
+
+        /* Timeline */
+        .timeline {
+            border-left: 4px solid #ffcc00;
+            padding-left: 20px;
+            margin: 30px 0;
+        }
+
+        .timeline .event {
+            margin-bottom: 30px;
+            padding-left: 10px;
+            position: relative;
+            opacity: 0; /* Hidden initially for animation */
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .timeline .event.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline .event::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background: #003366;
+            border-radius: 50%;
+            border: 3px solid #ffcc00;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #001f3f;
+            color: #fff;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-top: 3px solid #ffcc00;
+        }
+
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        /* Buttons */
+        button {
+            background-color: #ffcc00;
+            color: #001f3f;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #ffc107;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Menu Styles */
+        .menu-toggle { display: none; }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                display: none;
+                width: 100%;
+                background-color: #001f3f;
+                position: absolute;
+                top: 90px;
+                left: 0;
+                z-index: 1000;
+            }
+            nav ul.menu-open { display: flex; }
+            nav ul li { margin: 10px 0; }
+            
+            .menu-toggle {
+                display: block;
+                background: none;
+                font-size: 2rem;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                color: #ffcc00;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <h1>NASA Mars Rover Exploring the Red Planet</h1>
-        <p class="tagline">Mission Status: Active</p>
+        <h1>NASA Mars Rovers</h1>
+        <p class="tagline">Robotic Explorers on the Red Planet</p>
         
         <nav role="navigation">
             <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button> 
@@ -30,7 +278,7 @@
 
     <main role="main">
         <section>
-            <h2>Mission Overview</h2>
+            <h2>Exploring Mars with Curiosity and Perseverance</h2>
             <p>
                 NASA’s Mars Rover Program has revolutionized our understanding of the Red Planet. 
                 From the early missions like Spirit and Opportunity to the latest, cutting-edge 
@@ -41,7 +289,7 @@
             <img 
                 src="assets/css/img/Mars-rover.jpg" 
                 alt="Mars Rover on the surface"
-                onerror="this.onerror=null; this.src='https://placehold.co/800x450/0b0d17/00d2ff?text=Rover+Signal+Lost'"
+                onerror="this.onerror=null; this.src='https://placehold.co/750x420/2b3951/ffcc00?text=Image+Not+Found'"
             />
 
             <h3>Curiosity Rover</h3>
@@ -59,7 +307,7 @@
         </section>
 
         <section>
-            <h2>Rover Data Log</h2>
+            <h2>Rover Comparison Table</h2>
             <table>
                 <thead>
                     <tr>
@@ -89,7 +337,7 @@
         </section>
         
         <section>
-            <h2>Mission Timeline</h2>
+            <h2>Mission Milestones</h2>
             <div class="timeline">
                 <div class="event">
                     <h3>2011: Curiosity Launch</h3>
@@ -111,19 +359,60 @@
         </section>
     </main>
 
-    <footer>
-        <p>
-            &copy; 2025 James Culwell | 
-            <a href="mailto:jcculwell@ualr.edu">Report a Problem</a> 
-        </p>
-        
-        <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.9; color: var(--secondary-color);">
-            **For educational purposes only.** This website was created as a student project and is **not associated with or endorsed by NASA**.
-        </p>
-
-        <button id="darkModeToggle">Toggle Visual Mode</button>
+    <footer role="contentinfo">
+        <p>James Culwell ©2025:
+         This website is for educational purposes.</p>
+        <button id="darkModeToggle">Toggle Dark Mode</button>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const body = document.body;
+            const darkModeToggle = document.getElementById("darkModeToggle");
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navList = document.querySelector('nav ul');
+            
+            // Dark Mode
+            const applyDarkMode = (isDark) => {
+                if (isDark) {
+                    body.classList.add('dark-mode');
+                    if (darkModeToggle) darkModeToggle.textContent = 'Toggle Light Mode';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    if (darkModeToggle) darkModeToggle.textContent = 'Toggle Dark Mode';
+                    localStorage.setItem('theme', 'light');
+                }
+            };
+            
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") applyDarkMode(true);
+
+            if (darkModeToggle) {
+                darkModeToggle.addEventListener("click", () => {
+                    applyDarkMode(!body.classList.contains('dark-mode'));
+                });
+            }
+
+            // Mobile Menu
+            if (menuToggle && navList) {
+                menuToggle.addEventListener('click', () => {
+                    navList.classList.toggle('menu-open');
+                    menuToggle.innerHTML = navList.classList.contains('menu-open') ? '&#10005;' : '&#9776;';
+                });
+            }
+
+            // Timeline Animation
+            const events = document.querySelectorAll(".timeline .event");
+            const revealOnScroll = () => {
+                events.forEach(event => {
+                    const rect = event.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 100) event.classList.add("visible");
+                });
+            };
+            window.addEventListener("scroll", revealOnScroll);
+            revealOnScroll(); 
+        });
+    </script>
 </body>
 </html>
