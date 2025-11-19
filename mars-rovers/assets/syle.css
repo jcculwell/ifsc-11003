@@ -1,207 +1,303 @@
 /* ==============================
-   NASA Mars Rover Project Styles
-   Author: James Culwell
+   NASA "Mission Control" Theme
    ============================== */
 
-/* Reset some defaults */
+:root {
+    --primary-color: #00d2ff;   /* Cyan Neon */
+    --secondary-color: #ffcc00; /* Mars Gold */
+    --bg-dark: #0b0d17;         /* Deep Space */
+    --glass-bg: rgba(11, 13, 23, 0.75); /* Dark Glass */
+    --glass-border: rgba(0, 210, 255, 0.3);
+    --text-main: #e0e6ed;
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Global Styles */
+/* Base style is DARK */
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  line-height: 1.6;
-  background-color: rgb(244, 244, 244);
-  background-image: url("/assets/css/img/nasa-logo.png"); /* Your image path */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #222;
-  padding: 0;
-  margin: 0;
-  transition: background-color 0.3s, color 0.3s;
+    font-family: 'Exo 2', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    
+    /* BACKGROUND IMAGE (Path relative to style.css) */
+    background-image: url("img/nasa-logo.png"); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    background-blend-mode: soft-light;
 }
 
-/* Dark Mode */
-body.dark-mode {
-  background-color: #111;
-  color: #eee;
+/* LIGHT MODE OVERRIDE (Toggled by JS) */
+body.light-mode {
+    background-color: #f0f0f5;
+    color: #333;
+    background-blend-mode: overlay;
 }
 
-/* Header */
+body.light-mode header {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode section {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #eee;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode h2, body.light-mode h3 {
+    color: #003366;
+}
+
+/* --- NAVIGATION --- */
 header {
-  background: linear-gradient(135deg, #003366, #001f3f);
-  color: #fff;
-  padding: 20px 0;
-  text-align: center;
-  border-bottom: 4px solid #ffcc00;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(11, 13, 23, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 15px 0;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 header h1 {
-  font-size: 2rem;
-  letter-spacing: 1px;
-  margin-bottom: 5px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #fff, var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 5px;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
 }
 
 header .tagline {
-  font-style: italic;
-  font-size: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-/* Navigation Bar */
 nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-
-nav ul li {
-  margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-top: 15px;
+    gap: 20px;
 }
 
 nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  background-color: #004080;
-  padding: 8px 14px;
-  border-radius: 6px;
-  transition: background-color 0.3s;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 8px 20px;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
 }
 
-nav ul li a:hover,
+nav ul li a:hover, 
 nav ul li a.active {
-  background-color: #ffcc00;
-  color: #001f3f;
+    background: rgba(0, 210, 255, 0.1);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 15px var(--primary-color);
 }
 
-/* Main Content */
+/* --- MAIN CONTENT (Glass Cards) --- */
 main {
-  padding: 25px;
-  max-width: 900px;
-  margin: auto;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
-main h2 {
-  color: #003366;
-  margin-bottom: 10px;
+section {
+    background: rgba(20, 25, 40, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: transform 0.3s ease;
 }
 
-body.dark-mode main h2 {
-  color: #ffcc00;
+section:hover {
+    transform: translateY(-5px);
+    border-color: var(--glass-border);
 }
 
-main img {
-  width: 100%;
-  max-width: 750px;
-  border-radius: 10px;
-  margin: 15px 0;
-  display: block;
+h2, h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
-/* Tables */
+h2 {
+    font-size: 1.8rem;
+    border-left: 4px solid var(--secondary-color);
+    padding-left: 15px;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+/* --- IMAGES --- */
+img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    margin: 20px 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* --- TABLE --- */
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-table th, table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 table th {
-  background-color: #003366;
-  color: white;
+    background: rgba(0, 210, 255, 0.2);
+    color: var(--primary-color);
+    font-family: 'Orbitron', sans-serif;
+    text-align: left;
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
-body.dark-mode table {
-  background-color: #222;
-  color: #eee;
+table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-body.dark-mode table th {
-  background-color: #004080;
+table tr:hover td {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
 }
 
-/* Timeline Section */
+/* --- TIMELINE --- */
 .timeline {
-  border-left: 4px solid #003366;
-  padding-left: 20px;
-  margin: 20px 0;
+    border-left: 2px solid var(--glass-border);
+    margin-left: 10px;
+    padding-left: 30px;
 }
 
 .timeline .event {
-  margin-bottom: 20px;
+    position: relative;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s ease-out;
 }
 
-.timeline h3 {
-  color: #003366;
+.timeline .event.visible {
+    opacity: 1;
+    transform: translateX(0);
 }
 
-body.dark-mode .timeline h3 {
-  color: #ffcc00;
+.timeline .event::before {
+    content: '';
+    position: absolute;
+    left: -37px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: var(--bg-dark);
+    border: 2px solid var(--secondary-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--secondary-color);
 }
 
-/* Footer */
+/* --- FOOTER & BUTTONS --- */
 footer {
-  text-align: center;
-  background-color: #001f3f;
-  color: #fff;
-  padding: 20px 0;
-  margin-top: 40px;
-  font-size: 0.9rem;
-  border-top: 3px solid #ffcc00;
+    text-align: center;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.9rem;
+    color: #888;
 }
 
 footer a {
-  color: #ffcc00;
-  text-decoration: none;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: text-shadow 0.3s ease;
 }
 
 footer a:hover {
-  text-decoration: underline;
+    text-shadow: 0 0 10px var(--primary-color);
+    text-decoration: underline;
 }
 
-/* Button for Dark Mode Toggle */
-#darkModeToggle {
-  background-color: #ffcc00;
-  color: #001f3f;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 16px;
-  margin-top: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s;
+button {
+    background: transparent;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.3s;
 }
 
-#darkModeToggle:hover {
-  background-color: #ffc107;
-  transform: scale(1.05);
+button:hover {
+    background: var(--secondary-color);
+    color: #000;
+    box-shadow: 0 0 15px var(--secondary-color);
 }
 
-/* Responsive Layout */
+/* --- MOBILE MENU --- */
+.menu-toggle { display: none; }
+
 @media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-  }
-
-  nav ul li {
-    margin: 5px 0;
-  }
-
-  main {
-    padding: 15px;
-  }
+    nav ul {
+        display: none;
+        flex-direction: column;
+        background: rgba(11, 13, 23, 0.95);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        border-bottom: 1px solid var(--glass-border);
+    }
+    nav ul.menu-open { display: flex; }
+    
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        font-size: 1.5rem;
+        border: none;
+        box-shadow: none;
+        color: var(--secondary-color);
+        background: transparent;
+    }
 }
-
